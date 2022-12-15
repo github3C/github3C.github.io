@@ -6,15 +6,15 @@
   
   <title>TLS_00.md | GitHub3C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="##五项规则  ###car的规则  car只对非空列表有定义。    ###cdr的规则  cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。    ###cons的规则  cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。    ###Null的规则  Null仅为list定义。    ###eq的规则  eq有两个参数。每一个参数都是非数值ato">
+  <meta name="description" content="五项规则car的规则car只对非空列表有定义。 cdr的规则cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。 cons的规则cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。 Null的规则Null仅为list定义。 eq的规则eq有两个参数。每一个参数都是非数值atom  The Little Schemer 第四版##Daniel P. Frie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TLS_00.md">
 <meta property="og:url" content="http://example.com/2022/12/15/TLS-00-md/index.html">
 <meta property="og:site_name" content="GitHub3C">
-<meta property="og:description" content="##五项规则  ###car的规则  car只对非空列表有定义。    ###cdr的规则  cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。    ###cons的规则  cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。    ###Null的规则  Null仅为list定义。    ###eq的规则  eq有两个参数。每一个参数都是非数值ato">
+<meta property="og:description" content="五项规则car的规则car只对非空列表有定义。 cdr的规则cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。 cons的规则cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。 Null的规则Null仅为list定义。 eq的规则eq有两个参数。每一个参数都是非数值atom  The Little Schemer 第四版##Daniel P. Frie">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-15T07:34:49.000Z">
-<meta property="article:modified_time" content="2022-12-15T07:38:56.656Z">
+<meta property="article:modified_time" content="2022-12-15T09:04:04.361Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -96,40 +96,13 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <hr>
-<p>##五项规则</p>
-<blockquote>
-<p>###car的规则</p>
-<blockquote>
-<p>car只对非空列表有定义。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>###cdr的规则</p>
-<blockquote>
-<p>cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>###cons的规则</p>
-<blockquote>
-<p>cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>###Null的规则</p>
-<blockquote>
-<p>Null仅为list定义。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>###eq的规则</p>
-<blockquote>
-<p>eq有两个参数。每一个参数都是非数值atom</p>
-</blockquote>
-</blockquote>
+<h2 id="五项规则"><a href="#五项规则" class="headerlink" title="五项规则"></a>五项规则</h2><h3 id="car的规则"><a href="#car的规则" class="headerlink" title="car的规则"></a>car的规则</h3><p>car只对非空列表有定义。</p>
+<h3 id="cdr的规则"><a href="#cdr的规则" class="headerlink" title="cdr的规则"></a>cdr的规则</h3><p>cdr只对非空列表有定义。任何非空列表的cdr是另外一个列表。</p>
+<h3 id="cons的规则"><a href="#cons的规则" class="headerlink" title="cons的规则"></a>cons的规则</h3><p>cons有两个参数。cons的第二个参数必须是一个list，结果也是一个list。</p>
+<h3 id="Null的规则"><a href="#Null的规则" class="headerlink" title="Null的规则"></a>Null的规则</h3><p>Null仅为list定义。</p>
+<h3 id="eq的规则"><a href="#eq的规则" class="headerlink" title="eq的规则"></a>eq的规则</h3><p>eq有两个参数。每一个参数都是非数值atom</p>
 <hr>
-<p>#The Little Schemer<br>###第四版</p>
-<p>##Daniel P. Friedman<br>Indianna University<br>Bloomington, Indiana</p>
+<h1 id="The-Little-Schemer-第四版"><a href="#The-Little-Schemer-第四版" class="headerlink" title="The Little Schemer 第四版"></a>The Little Schemer <sup><em>第四版</em></sup></h1><p>##Daniel P. Friedman<br>Indianna University<br>Bloomington, Indiana</p>
 <p>##Matthias Felleisen<br>Rice University<br>Houston Texas</p>
 <p>The MIT Press<br>Cambridge, Massachusetts<br>London, England</p>
 <hr>
@@ -143,7 +116,8 @@
 <p align="right">Gambridge, Massachusetts</p>
 
 <hr>
-<p>##<center>Preface<center></p>
+<h2><center>Preface</center></h2>
+
 <p>为了庆祝Scheme的20周年纪念，我们修订The Little LISPer第三次，给了一个更加准确的名字The Little Schemer，和续集The Seasoned Schemer.</p>
 <p>程序接受数据和产生数据。设计程序需要对数据有透彻的理解；好的程序反映了数据的结构。大多数数据和大多数程序是递归的。递归是定义一个对象或者靠自己解决解决一个问题的行为。</p>
 <p>本书的目的是教会读者递归。第一个问题是使用何种程序来交流这种概念，三种选择：自然语言，如英语；正式数学；或者程序语言。自然语言时含混的不精确的，有时还笨拙冗长。这些是一般交流的优势，但是有时这对交流一些概念，如递归很不简洁。数学与自然语言相反：使用极少的符号就可以表达出强大且正式的想法。不幸的是，数学语言常常是隐蔽的，没有特殊训练几乎不能运用。技术和数学的联姻给我们第三中选择，一个几乎完美的选择：程序语言。我们认为程序语言时是最好的描述递归的方法。他们分享了数学给符号以正式意义的能力。但是与数学不同的是，程序语言是可以直接体验的——你可以拿着本书中的程序，观察他们的行为，修改他们，体验这些修改的效果。</p>
@@ -152,15 +126,15 @@
 <p>The Little Schemer 和 The Seasoned Schemer将不会引导你实际的编程，但是掌握书中的这些概念会让你理解计算的本质。</p>
 <center>阅读本书需要读者：认得字，认识数，会算术。</center>
 
-<p>感谢***(略了)</p>
-<center>**导读**</center>
+<p>感谢… …(此处省略1万字)</p>
+<center><b>导读</b></center>
 
 
 <p>不要快速略读本书。要细细的读；有意义的提示散布在课文中。阅读本书不要少于3次settings。系统地读。如果你没有完全读懂一章，下一章你懂得更少。问题难度渐增；前边的问题不能解决，遇见后边的将束手无策。本书是以对话的形式套路你有趣的Scheme程序例子。如果你可以，读书的时候做作习题。Scheme是可用的。尽管Scheme的不同实现有微小的语法变化（主要是特殊函数的名称和domain的拼写），所有的Scheme都是一样的。为了使用Scheme，你需要定义atom?, sub1, 和add1。我们在The Little Schemer中介绍：</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> atom?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (x)</span><br><span class="line">    (<span class="name"><span class="built_in">and</span></span> (<span class="name"><span class="built_in">not</span></span> (<span class="name"><span class="built_in">pair?</span></span> x)) (<span class="name"><span class="built_in">not</span></span> (<span class="name"><span class="built_in">null?</span></span> x)))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scheme</span><br><span class="line">(define atom?</span><br><span class="line">  (lambda (x)</span><br><span class="line">    (and (not (pair? x)) (not (null? x)))))</span><br></pre></td></tr></table></figure>
 
 <p>为了找出你的Scheme是否定义了正确的atom?, 尝试(atom? (quote ()))然后确保它返回#f。实际上，这在现代Lisp，如Common Lisp中是自带的。为了使用Lisp，你还需要添加函数atom?:</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> atom? (<span class="name">x</span>)</span><br><span class="line">    (<span class="name">not</span> (<span class="name">listp</span> x)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lisp</span><br><span class="line">(defun atom? (x)</span><br><span class="line">    (not (listp x)))</span><br></pre></td></tr></table></figure>
 
 <p>另外你需要做一些程序的修改。特别的，只需要微小的修改。如何尝试修改这些程序的建议在framenotes中。Framenotes中有“S：”的是Scheme相关的，那些有”L:”的是Lisp相关的。</p>
 <p>第四章中我们将会从add1，sub1和zero？三种操作中获得基本的算术。Scheme本身没有提供add1和aub1，你必须用内建的基元定义加法和减法。为了避免circularity我们的算术加法和减法我们必须分别使用不同的符号：+和-。</p>
