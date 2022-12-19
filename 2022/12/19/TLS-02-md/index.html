@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>这样做，再来一次，再来一次 | GitHub3C</title>
+  <title>「The Little Schemer」02 这样做，再来一次，再来一次 | GitHub3C</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="假设 l 是 (Jack Sprat could eat no chicken fat)那么 (lat? l)是真还是假  真。因为每个list表l中的 S-expression 都是atom原子。   假设 l 是 ((Jack) Sprat could eat no chicken fat)那么 (lat? l)是真还是假  假。因为(car l)是一个list。   假设 l 是 (Jac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="这样做，再来一次，再来一次">
+<meta property="og:title" content="「The Little Schemer」02 这样做，再来一次，再来一次">
 <meta property="og:url" content="http://example.com/2022/12/19/TLS-02-md/index.html">
 <meta property="og:site_name" content="GitHub3C">
 <meta property="og:description" content="假设 l 是 (Jack Sprat could eat no chicken fat)那么 (lat? l)是真还是假  真。因为每个list表l中的 S-expression 都是atom原子。   假设 l 是 ((Jack) Sprat could eat no chicken fat)那么 (lat? l)是真还是假  假。因为(car l)是一个list。   假设 l 是 (Jac">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-19T02:18:07.000Z">
-<meta property="article:modified_time" content="2022-12-19T05:18:26.989Z">
+<meta property="article:modified_time" content="2022-12-19T05:28:39.993Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      这样做，再来一次，再来一次
+      「The Little Schemer」02 这样做，再来一次，再来一次
     </h1>
   
 
@@ -129,26 +129,33 @@
 <center>**休息好了吗?**</center>
 
 <hr>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">     ((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">  ((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
 
 <p>假设 l 是 <code>(bacon and eggs)</code>，那么<code>(lat? l)</code>是什么</p>
 <blockquote>
-<p>#t——真——因为l是一个lat<br>注：Lisp中：</p>
+<p>#t——真——因为l是一个lat</p>
+<p>注：Lisp中：</p>
 </blockquote>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> lat? (<span class="name">l</span>)</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line">    ((<span class="name">null</span> l) <span class="literal">t</span>)</span><br><span class="line">    ((<span class="name">atom</span>? (<span class="name">car</span> l)) (<span class="name">lat</span>? (<span class="name">cdr</span> l)))</span><br><span class="line">    (<span class="name">t</span> <span class="literal">nil</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> lat? (<span class="name">l</span>)</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line"> ((<span class="name">null</span> l) <span class="literal">t</span>)</span><br><span class="line"> ((<span class="name">atom</span>? (<span class="name">car</span> l)) (<span class="name">lat</span>? (<span class="name">cdr</span> l)))</span><br><span class="line"> (<span class="name">t</span> <span class="literal">nil</span>)))</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>我们怎么推知<code>(lat? l)</code>的答案是 <code>#t</code></p>
 <blockquote>
-<p>现在这个问题你也回答不了。这个问题由lat?的查询决定。<br>提示：写下lat?的定义然后看下面的系列问答。</p>
+<p>现在这个问题你也回答不了。这个问题由lat?的查询决定。</p>
+<p>提示：写下lat?的定义然后看下面的系列问答。</p>
 </blockquote>
 <hr>
 <p><code>(lat? l)</code> 的第一个查询是什么</p>
 <blockquote>
-<p>(null? l)<br>注意：<br>(cond …) 提问<br>(lambda …) 产生函数<br>(define …) 给出函数名</p>
+<p>(null? l)</p>
+<p>注意：</p>
+<p>(cond …) 提问</p>
+<p>(lambda …) 产生函数</p>
+<p>(define …) 给出函数名</p>
 </blockquote>
 <hr>
-<p>cond 行<br><code>((null?l) #t)</code><br>是什么意思<br>其中 l 是 <code>(bacon and eggs)</code></p>
+<p>cond 行<br><code>((null?l) #t)</code><br>是什么意思</p>
+<p>其中 l 是 <code>(bacon and eggs)</code></p>
 <blockquote>
 <p>(null? l) 查询参数l是否是null。如果是，则是真；否则为假，cond执行下一个查询。</p>
 </blockquote>
@@ -235,7 +242,8 @@
 <hr>
 <p>还记得 (lat? l) 的查询吗</p>
 <blockquote>
-<p>记不得了吧?<br>当l为(bacon and eggs)时，操作(lat? l)的值为#t</p>
+<p>记不得了吧?</p>
+<p>当l为(bacon and eggs)时，操作(lat? l)的值为#t</p>
 </blockquote>
 <hr>
 <p>你可以用自己的语言描述一下函数lat?做了什么吗</p>
@@ -244,7 +252,7 @@
 </blockquote>
 <hr>
 <p>下面再写一次lat?的定义</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">      ((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
 
 <p><code>(lat? l)</code>的值是多少，其中l现在是<code>(bacom (and eggs))</code></p>
 <blockquote>
@@ -271,12 +279,14 @@
 <p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)是一个atom原子，所以我们查询list表l的剩余部分看是否都是原子。</p>
 </blockquote>
 <hr>
-<p><code>(lat? (cdr l))</code><br>是什么意思</p>
+<p><code>(lat? (cdr l))</code></p>
+<p>是什么意思</p>
 <blockquote>
 <p>(lat? (cdr l))通过lat?查询新的参数发现是否list表l的剩余组成部分都是是atom原子，其中把l替换为(cdr l)。</p>
 </blockquote>
 <hr>
-<p>下面这行是什么意思，其中l现在是 <code>((and eggs))</code><br><code>((null? l) #t)</code></p>
+<p>下面这行是什么意思，其中l现在是 &#96;((and eggs))&#96;&#96;</p>
+<p>&#96;&#96;((null? l) #t)&#96;</p>
 <blockquote>
 <p>(null? l) 查询参数l是否是null。如果是，则是#t真；否则cond执行下一个查询。</p>
 </blockquote>
@@ -286,7 +296,8 @@
 <p><code>(atom? (car l))</code></p>
 </blockquote>
 <hr>
-<p>下面这行是什么意思，其中 l 是<code>((and eggs))</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<p>下面这行是什么意思，其中 l 是&#96;((and eggs))&#96;&#96;</p>
+<p>&#96;&#96;((atom? (car l)) (lat? (cdr l)))&#96;</p>
 <blockquote>
 <p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)不是一个atom原子，进行下一个查询。</p>
 </blockquote>
@@ -367,7 +378,7 @@
 </blockquote>
 <hr>
 <p>下面是函数member?的定义</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> member?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">null?</span></span> lat) <span class="literal">#f</span>)</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line">                (<span class="name">member?</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> member?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> lat) <span class="literal">#f</span>)</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line"> (<span class="name">member?</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))</span><br></pre></td></tr></table></figure>
 
 <p>问<code>(member? a lat)</code>是什么 其中 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code></p>
 <blockquote>
@@ -407,7 +418,7 @@
 </blockquote>
 <hr>
 <p>下面这行是什么意思 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(else (or (eq? (car lat) a)  </span><br><span class="line">                (member? a (cdr lat))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(else (or (eq? (car lat) a)  </span><br><span class="line"> (member? a (cdr lat))))</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>现在我们知道lat不是null，我们必须找出lat的car是不是a，或者lat的其他地方是不是a。</p>
@@ -415,7 +426,7 @@
 <hr>
 <p>问 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code>时  </p>
 <pre><code>(or (eq? (car lat) a)
-    (member? a (cdr lat))))
+ (member? a (cdr lat))))
 </code></pre>
 <p>是真还是假</p>
 <blockquote>
@@ -454,7 +465,7 @@
 <hr>
 <p>下面这行是什么意思</p>
 <pre><code>(or (eq? (car lat) a)
-    (member? a (cdr lat))))
+ (member? a (cdr lat))))
 </code></pre>
 <blockquote>
 <p>找出 a 是否与lat的car是eq?相同或者递归查找 a 是否是lat的cdr中的成员。</p>
@@ -492,7 +503,7 @@
 <hr>
 <p>下面的代码是什么值</p>
 <pre><code>(or (eq？ (car lat) a)
-    (member? a (cdr lat)))
+ (member? a (cdr lat)))
 </code></pre>
 <blockquote>
 <p>#t。因为(car lat)即meat与a相同都是原子meat，所以(or …)是真。</p>
@@ -518,10 +529,13 @@
 <p>#t</p>
 </blockquote>
 <hr>
-<p>为了确保你的确会了，让我们快速的再来一次<br><code>(member? a lat)</code>的值是什么，</p>
-<p>其中 a 是<code>meat</code>，<br>lat是<code>(mashed potatoes and meat gravy)</code></p>
+<p>为了确保你的确会了，让我们快速的再来一次</p>
+<p><code>(member? a lat)</code>的值是什么，</p>
+<p>其中 a 是<code>meat</code>，</p>
+<p>lat是<code>(mashed potatoes and meat gravy)</code></p>
 <blockquote>
-<p>#t<br>提示：写下member?函数的定义然后参考下面的问题。</p>
+<p>#t</p>
+<p>提示：写下member?函数的定义然后参考下面的问题。</p>
 </blockquote>
 <hr>
 <p><code>(null? lat)</code></p>
@@ -535,7 +549,7 @@
 </blockquote>
 <hr>
 <pre><code>(or (eq? (car lat) a)
-    (member? a (cdr lat))))
+ (member? a (cdr lat))))
 </code></pre>
 <blockquote>
 <p>或许</p>
@@ -582,7 +596,7 @@
 </blockquote>
 <hr>
 <pre><code>(or (eq? (car lat) a)
-    (member? a (cdr lat))))
+ (member? a (cdr lat))))
 </code></pre>
 <blockquote>
 <p>#t<br>回溯上去知道a为<code>meat</code>，lat为<code>(mashed potatoes and meat gravy)</code>时为#t真。</p>
@@ -680,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/12/19/TLS-02-md/" data-id="clbu7bht400016shi32fk01jg" data-title="这样做，再来一次，再来一次" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/12/19/TLS-02-md/" data-id="clbu7bht400016shi32fk01jg" data-title="「The Little Schemer」02 这样做，再来一次，再来一次" class="article-share-link">Share</a>
       
       
       
@@ -693,7 +707,7 @@
   
     <a href="/2022/12/19/TLS-01-md/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">TLS-01.md</div>
+      <div class="article-nav-title">「The Little Schemer」01 玩具</div>
     </a>
   
 </nav>
@@ -731,15 +745,15 @@
       <ul>
         
           <li>
-            <a href="/2022/12/19/TLS-02-md/">这样做，再来一次，再来一次</a>
+            <a href="/2022/12/19/TLS-02-md/">「The Little Schemer」02 这样做，再来一次，再来一次</a>
           </li>
         
           <li>
-            <a href="/2022/12/19/TLS-01-md/">TLS-01.md</a>
+            <a href="/2022/12/19/TLS-01-md/">「The Little Schemer」01 玩具</a>
           </li>
         
           <li>
-            <a href="/2022/12/15/TLS-00-md/">TLS_00.md</a>
+            <a href="/2022/12/15/TLS-00-md/">「The Little Schemer」前言</a>
           </li>
         
           <li>
