@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>「The Little Schemer」03 cons 满塞 | GitHub3C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="《The little Schemer》第三章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「The Little Schemer」03 cons 满塞">
+<meta property="og:url" content="http://example.com/2022/12/19/TLS-03-md/index.html">
+<meta property="og:site_name" content="GitHub3C">
+<meta property="og:description" content="《The little Schemer》第三章">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-19T05:35:00.000Z">
+<meta property="article:modified_time" content="2022-12-19T12:31:40.099Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="GitHub3C" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GitHub3C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-TLS-03-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/19/TLS-03-md/" class="article-date">
+  <time class="dt-published" datetime="2022-12-19T05:35:00.000Z" itemprop="datePublished">2022-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      「The Little Schemer」03 cons 满塞
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>《The little Schemer》第三章</p>
+<span id="more"></span>
+
+<hr>
+<p><code>(rember a lat)</code>是什么，其中</p>
+<p>a 是<code>mint</code>，</p>
+<p>lat 是<code>(lamb chops and mint jelly)</code></p>
+<blockquote>
+<p><code>(lamb chops and jelly)</code><br>“rember”表示remove a member 删除一个成员。</p>
+</blockquote>
+<hr>
+<p><code>(rember a lat)</code></p>
+<p>是什么，其中</p>
+<p>a 是<code>mint</code></p>
+<p>lat 是<code>(lamb chops and mint flavored mint jelly)</code></p>
+<blockquote>
+<p><code>(lamb chops and flavored mint jelly)</code></p>
+</blockquote>
+<hr>
+<p><code>(rember a lat)</code></p>
+<p>是什么，其中 </p>
+<p>a 是<code>toast</code> </p>
+<p>lat 是<code>(bacon lettuce and tomato)</code></p>
+<blockquote>
+<p><code>(bacon lettuce and tomato)</code></p>
+</blockquote>
+<hr>
+<p><code>(rember a lat)</code> </p>
+<p>是什么，其中 </p>
+<p>a 是<code>cup</code> </p>
+<p>lat 是<code>(coffee cup tea cup and hick cup)</code></p>
+<blockquote>
+<p><code>(coffee tea cup and hick cup)</code></p>
+</blockquote>
+<hr>
+<p><code>(rember a lat)</code>做什么</p>
+<blockquote>
+<p>删除lat中的第一个和参数a相同的原子</p>
+</blockquote>
+<hr>
+<p>那么我们应该做哪些步骤</p>
+<blockquote>
+<p>首先测试<code>(null? lat)</code>——这是第一戒</p>
+</blockquote>
+<hr>
+<p>如果<code>(null? lat)</code>是真呢</p>
+<blockquote>
+<p>返回 ()。</p>
+</blockquote>
+<hr>
+<p>如果<code>(null? lat)</code>是假呢</p>
+<blockquote>
+<p>至少lat中有一个atom原子</p>
+</blockquote>
+<hr>
+<p>需要其它查询吗</p>
+<blockquote>
+<p>不需要。要么 lat 是空要么至少有一个原子。</p>
+</blockquote>
+<hr>
+<p>如果至少有一个atom原子呢</p>
+<blockquote>
+<p>查询 a 是否与<code>(car lat)</code>相同。</p>
+</blockquote>
+<hr>
+<p>怎么查询</p>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<pre><code>(cond
+  (_____ ______)
+  (_____ ______)
+</code></pre>
+<hr>
+<p>怎么查询 a 是否与(car lat)相同</p>
+<blockquote>
+<p><code>(eq? (car lat) a)</code></p>
+</blockquote>
+<hr>
+<p>如果 a 与<code>(car lat)</code>相同那么<code>(rember a lat)</code>的值是什么</p>
+<blockquote>
+<p><code>(cdr lat)</code></p>
+</blockquote>
+<hr>
+<p>如果 a 与<code>(car lat)</code>不相同那么<code>(rember a lat)</code>的值是什么</p>
+<blockquote>
+<p>保留<code>(car lat)</code>，但是寻找lat的其他部分是否有a</p>
+</blockquote>
+<hr>
+<p>怎么删去 lat 其余部分的第一个 a</p>
+<blockquote>
+<p><code>(rember a (cdr lat)</code></p>
+</blockquote>
+<hr>
+<p>还有查询吗</p>
+<blockquote>
+<p>没了</p>
+</blockquote>
+<hr>
+<p>现在让我们写出刚才想到的函数rember</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> rember</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> lat) &#x27;())</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">eq?</span></span> a (<span class="name"><span class="built_in">car</span></span> lat)) (<span class="name"><span class="built_in">cdr</span></span> lat))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span> (<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat))))))))</span><br></pre></td></tr></table></figure>
+
+<p>a 是<code>bacon</code> </p>
+<p>lat 是<code>(bacon lettuce and tomato)</code></p>
+<p>那么 <code>(rember a lat)</code> 的值是什么?</p>
+<blockquote>
+<p><code>(lettuce and tomato)</code><br>提示:写下rember函数和参数，然后参考下面的系列问题。</p>
+</blockquote>
+<hr>
+<p>看看函数是否正常。第一个查询是什么</p>
+<blockquote>
+<p><code>(null? lat)</code></p>
+</blockquote>
+<hr>
+<p>现在呢</p>
+<blockquote>
+<p>移动到下一行。</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>是。</p>
+</blockquote>
+<hr>
+<p>然后呢</p>
+<blockquote>
+<p>移动到下一行。</p>
+</blockquote>
+<hr>
+<p><code>(eq？ (car lat) a)</code></p>
+<blockquote>
+<p>是，所以值是(cdr lat)，在此例子中为(lettuce and tomato)。</p>
+</blockquote>
+<hr>
+<p>这是正确的吗</p>
+<blockquote>
+<p>是的，所以值是<code>(cdr lat)</code>。此例中为<code>(lettuce and tomato)</code></p>
+</blockquote>
+<hr>
+<p>但是，我们的用例对么</p>
+<blockquote>
+<p>谁知道啊?但是，证明甜点是用吃，让我们试试其它例子。</p>
+</blockquote>
+<hr>
+<p>rember是做什么的</p>
+<blockquote>
+<p>它的参数为一个atom原子和一个lat，rember在第二个参数中寻找出第一个出现的第一个参数并把它删除。</p>
+</blockquote>
+<hr>
+<p>现在呢</p>
+<blockquote>
+<p>把 a 对比lat中的每一个atom原子，如果没有找到，那么我们把刚才对比的原子放入新的list中。</p>
+</blockquote>
+<hr>
+<p><code>(rember a lat)</code> </p>
+<p>是什么值，其中 </p>
+<p>a 是<code>and</code> </p>
+<p>lat 是<code>(bacon lettuce and tomato)</code></p>
+<blockquote>
+<p><code>(bacon lettuce tomato)</code></p>
+</blockquote>
+<hr>
+<p>让我们看看我们的rember函数是否正确。rember的第一个查询是什么</p>
+<blockquote>
+<p><code>(null? lat)</code></p>
+</blockquote>
+<hr>
+<p>下面呢</p>
+<blockquote>
+<p>移动到下一行。</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>OK，下一个问题</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat)a)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p><code>(else (rember a (cdr lat)))</code> </p>
+<p>是什么意思</p>
+<blockquote>
+<p><code>else</code>询问真假。下一行用参数a和<code>(cdr lat)</code>递归查询， a 是<code>and</code>，<code>(cdr lat)</code>是<code>(lettuce  and tomato)</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>确定</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p><code>(rember a (cdr lat))</code><br>的意思是什么</p>
+<blockquote>
+<p>递归查询， a 是<code>and</code>，<code>(cdr lat)</code>是<code>(and tomato)</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>当然of course</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>是。</p>
+</blockquote>
+<hr>
+<p>所以结果是什么</p>
+<blockquote>
+<p><code>(cdr lat)</code> –&gt; <code>(tomato)</code></p>
+</blockquote>
+<hr>
+<p>正确吗</p>
+<blockquote>
+<p>不对，正确的应该是<code>(bacom lettuce and tomato)</code></p>
+</blockquote>
+<hr>
+<p>我们做错什么了</p>
+<blockquote>
+<p>我们把 and，以及 and 以前的东西都丢弃了。</p>
+</blockquote>
+<hr>
+<p>我们怎么才能留住bacon和lettuce</p>
+<blockquote>
+<p>使用cons，还记得<a href="/TLS/01.html">第一章</a>的cons吗</p>
+</blockquote>
+<hr>
+<div class="textbox">
+    <h1>第二戒</h1>
+    <p>使用cons构建list表</p>
+</div>
+---------------
+
+<p>让我们看看使用了cons后的rember函数</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> rember</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> lat) &#x27;())</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a) (<span class="name"><span class="built_in">cdr</span></span> lat))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line">		 (<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<p>假设 a 是 <code>and</code></p>
+<p>lat 是 &#96;(bacon lettuce and tomato)&#96;&#96;</p>
+<p>&#96;&#96;(rember a lat)&#96; 的值是什么</p>
+<blockquote>
+<p><code>(bacon lettuce tomato)</code></p>
+</blockquote>
+<hr>
+<p>第一个问题是什么？</p>
+<blockquote>
+<p><code>(null? lat)</code></p>
+</blockquote>
+<hr>
+<p>现在做什么？</p>
+<blockquote>
+<p>第二个问题</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>是的，当然。</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>No, 移动到下一行</p>
+</blockquote>
+<hr>
+<p>这是什么意思：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">  (<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+
+<p>现在 a 是 <code>and</code></p>
+<p>lat 是 <code>(bacon lettuce and tomato)</code></p>
+<blockquote>
+<p>它表示，把 lat 的 car ——bacon ，cons 到 <code>(rember a (cdr lat))</code>的结果上。</p>
+<p>但是现在我们还不知道具体的结果。</p>
+</blockquote>
+<hr>
+<p><code>(rember a (cdr lat))</code></p>
+<p>是什么意思</p>
+<blockquote>
+<p>重新执行函数rember，现在参数lat被替换成了(cdr lat) ——<code>(lettuce and tomato)</code>了。</p>
+</blockquote>
+<hr>
+<p>&#96;(null? lat)</p>
+<blockquote>
+<p>No, 移动到下一行</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>是的，下个问题</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>No, 移动到下一行</p>
+</blockquote>
+<hr>
+<p>这是什么意思：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">  (<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>它表示，把 lat 的 car ——lettuce ，cons 到 <code>(rember a (cdr lat))</code>的结果上。</p>
+<p>但是现在我们还不知道具体的结果。</p>
+</blockquote>
+<hr>
+<p><code>(rember a (cdr lat))</code></p>
+<p>是什么意思</p>
+<blockquote>
+<p>重新执行函数rember，现在参数lat被替换成了(cdr lat) ——<code>(and tomato)</code>了。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>No，下个问题</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>仍然</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>Yes.</p>
+</blockquote>
+<hr>
+<p><code>((eq? (car lat) a) (cdr lat))</code></p>
+<p>的值是什么</p>
+<blockquote>
+<p>(cdr lat) —— <code>(tomato)</code></p>
+</blockquote>
+<hr>
+<p>完成了吗？</p>
+<blockquote>
+<p>没有！</p>
+<p>我们现在知道当 lat等于<code>(and tomato)</code>时，<code>(rember a lat)</code>的结果。</p>
+<p>但是我们还不知道当 lat等于</p>
+<p><code>(lettuce and tomato)</code></p>
+<p>以及</p>
+<p><code>(bacon lettuce and tomato)</code></p>
+<p>时，<code>(rember a lat)</code>的结果</p>
+</blockquote>
+<hr>
+<p>现在我们得到了<code>(rember a (cdr lat))</code>的值</p>
+<p>当 a 是 &#96;and&#96;&#96;</p>
+<p>&#96;&#96;(cdr lat)<code>是</code>(and tomato)&#96;</p>
+<p>这个值就是<code>(tomato)</code></p>
+<p>那么接下来呢？</p>
+<blockquote>
+<p>回忆下刚才，我们试图把lettuce cons 到 <code>(rember a (cdr lat))</code>的结果上，现在我们有了这个结果——<code>(tomato)</code>，我们可以把lettuce cons 进去了。</p>
+</blockquote>
+<hr>
+<p>把 lettuce cons 到 (tomato)的结果是什么</p>
+<blockquote>
+<p>(lteeuce tomato)</p>
+</blockquote>
+<hr>
+<p><code>(lettuce tomato)</code>代表了什么</p>
+<blockquote>
+<p>它代表了</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">&gt;(<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+
+<p>的值，当时，lat 是 <code>(lettuce and tomato)</code></p>
+<p>而<code>(rember a (cdr lat))</code>的值是<code>(tomato)</code></p>
+</blockquote>
+<hr>
+<p>完成了吗？</p>
+<blockquote>
+<p>还没有。我们知道了当</p>
+<p>lat 是 <code>(lettuce and tomato)</code>时</p>
+<p><code>(rember a lat)</code>的值，但是，我们还不知道当</p>
+<p>lat 是 <code>(bacon lettuce and tomato)</code>时它的值是什么</p>
+</blockquote>
+<hr>
+<p>现在我们得到了<code>(rember a (cdr lat))</code>的值，</p>
+<p>当 a 是 <code>and</code></p>
+<p>且 <code>(cdr lat)</code> 是 <code>(lettuce and tomato)</code></p>
+<p>这个值就是 <code>(lettuce tomato)</code>  </p>
+<p>接下来我们必须再次做什么？</p>
+<blockquote>
+<p>再回忆下，我们曾试图把 <code>bacon</code> cons 到 <code>(rember a (cdr lat))</code>的结果中去。</p>
+<p>当时，a 是 &#96;and&#96;&#96;</p>
+<p>&#96;&#96;(cdr lat) 是 <code>(lettuce and tomato)</code><br>现在，我们有了这个值，它就是<code>(lettuce tomato)</code></p>
+<p>我们可以cons了。</p>
+</blockquote>
+<hr>
+<p>把<code>bacon</code> cons 到 <code>(lettuce tomato)</code>的结果是什么？</p>
+<blockquote>
+<p><code>(bacon lettuce tomato)</code></p>
+</blockquote>
+<hr>
+<p><code>(bacon lettuce tomato)</code>代表了什么？</p>
+<blockquote>
+<p>它代表了</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">&gt;(<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+<p>的值，lat 是 &#96;(bacon lettuce and tomato)&#96;&#96;</p>
+<p>&#96;&#96;(rember a (cdr lat))<code>是</code>(lettuce tomato)&#96;</p>
+</blockquote>
+<hr>
+<p>现在我们全都完成了吗？</p>
+<blockquote>
+<p>是的。</p>
+</blockquote>
+<hr>
+<p>你能用你自己的话描述一下最终得到的这个值：</p>
+<p><code>(bacon lettuce tomato)</code>吗</p>
+<blockquote>
+<p>函数<code>rember</code>依次检查 <code>lat</code> 中的每一个原子是否与<code>and</code>相同，如果<code>car lat</code>与<code>and</code>并不相同，我们将它保存下来，稍后再cons到最终的值上面去。如果rember在lat中找到了<code>and</code>原子，则丢弃它。返回lat的剩余部分，然后再将先前暂存的原子cons到最终结果上去。（乱译）</p>
+</blockquote>
+<hr>
+<p>你可以重写rember函数，使它更能反映上面的描述吗？</p>
+<blockquote>
+<p>是的，我们可以简化它</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> rember</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) &#x27;())</span><br><span class="line">    ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a) (<span class="name"><span class="built_in">cdr</span></span> lat))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">    (<span class="name">rember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<hr>
+<p>（验证重写的rember函数是否正确，略过。）</p>
+<hr>
+<p><code>(firsts l)</code>是什么，其中 l 是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">((apple peach pumpkin)</span><br><span class="line"> (plum pear cherry)</span><br><span class="line"> (grape rasin pea)</span><br><span class="line"> (bean carrot eggplant))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>(apple plum grape bean)</code></p>
+</blockquote>
+<hr>
+<p><code>(firsts l)</code><br>是什么，其中 l 是<code>((a b) (c d) (e f))</code></p>
+<blockquote>
+<p><code>(a c e)</code></p>
+</blockquote>
+<hr>
+<p><code>(firsts l)</code>是什么，其中 l 是<code>()</code></p>
+<blockquote>
+<p><code>()</code></p>
+</blockquote>
+<hr>
+<p><code>(firsts l)</code>是什么，其中 l 是</p>
+<pre><code>((five plums)
+ (four)
+ (eleven green oranges))
+</code></pre>
+<blockquote>
+<p><code>(five four eleven)</code></p>
+</blockquote>
+<hr>
+<p><code>(firsts l)</code>是什么，其中 l 是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(((five plums) four)</span><br><span class="line"> (eleven green oranges)</span><br><span class="line"> ((no) more))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>((five plums) eleven (no))</code></p>
+</blockquote>
+<hr>
+<p>现在，用你自己的话说说(firsts l)做什么</p>
+<blockquote>
+<p>下面是我们的尝试<br>“firsts函数输入一个lists表参数，null空表，或者只包含非空表。它抽取list表中每一个成员的第一个 S-expression表达式构建新的list表。”</p>
+</blockquote>
+<hr>
+<p>试试你能不能写出函数firsts，记得戒律。</p>
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> firsts</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> l) ...)</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> ... (<span class="name">firsts</span> (<span class="name"><span class="built_in">cdr</span></span> l)))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>为什么要</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> firsts</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line"> ...))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为要定义函数名<code>firsts</code>和参数(l)</p>
+</blockquote>
+<hr>
+<p>为什么<code>(cond ...)</code></p>
+<blockquote>
+<p>因为我们对参数需要查询问题</p>
+</blockquote>
+<hr>
+<p>为什么要<br><code>((null? l) ...)</code></p>
+<blockquote>
+<p>第一戒</p>
+</blockquote>
+<hr>
+<p>为什么<code>(else</code></p>
+<blockquote>
+<p>因为我们对参数l只有两个查询。</p>
+</blockquote>
+<hr>
+<p>为什么<code>(else</code></p>
+<blockquote>
+<p>看上面。另外最后一个查询必须总是else</p>
+</blockquote>
+<hr>
+<p>为什么<code>(cons</code></p>
+<blockquote>
+<p>因为我们需要创建list表——第二戒</p>
+</blockquote>
+<hr>
+<p>为什么需要<code>(firsts (cdr l))</code></p>
+<blockquote>
+<p>因为我们每次只能看到一个S-表达式，余下的必须递归。</p>
+</blockquote>
+<hr>
+<p>为什么<code>)))</code></p>
+<blockquote>
+<p>与(cond, (lambda, (define, 的括号匹配。</p>
+</blockquote>
+<hr>
+<p>回忆下firsts的定义。<code>(firsts l)</code>的典型元素是什么<br>当 l 是 <code>((a b) (c d) (e f))</code></p>
+<blockquote>
+<p>a</p>
+</blockquote>
+<hr>
+<p>剩下的典型元素是什么</p>
+<blockquote>
+<p>c，还有后边的e</p>
+</blockquote>
+<hr>
+<p>考虑一下seconds的定义。<br><code>(seconds l)</code>的元素是什么，其中 l 是<br><code>((a b) (c d) (e f))</code></p>
+<blockquote>
+<p>b, d, 或者 f。</p>
+</blockquote>
+<hr>
+<p>我们怎么描述<code>(firsts l)</code>的典型元素</p>
+<blockquote>
+<p>参照第一章，那么l的一个元素的car为<code>(car (car l))</code></p>
+</blockquote>
+<hr>
+<p>找到一个典型的<code>(firsts l)</code>后，我们该做什么</p>
+<blockquote>
+<p>把它cons到递归<code>(firsts (cdr l))</code>中。</p>
+</blockquote>
+<hr>
+<div class="textbox">
+<h1>第三戒</h1>
+<p>当构建list表时，描述第一个典型元素，然后把它cons到自然递归中去。</p>
+</div>
+-------------
+
+<p>有了第三戒，我们可以添入firsts函数更多部分</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">firsts</span> (<span class="name"><span class="built_in">cdr</span></span> l)) ))</span><br><span class="line">~~~~~~~~~~~~  ^^^^^^^^^^^^^^^^</span><br><span class="line">  典型元素自然递归</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>(firsts l)结果是什么，其中 l 是<code>((a b) (c d) (e f))</code></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> firsts</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> l) ...)</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">firsts</span> (<span class="name"><span class="built_in">cdr</span></span> l)))))))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>什么也没有。我们的菜谱中还缺点重要的成分。不过，我们现在可以就可以执行它。</p>
+</blockquote>
+<hr>
+<p><code>(null? l)</code> 为真吗<br>其中 l 是<code>((a b) (c d) (e f))</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思<br><code>(cons (car (car l)) (firsts (cdr l)))</code></p>
+<blockquote>
+<p>把<code>(car (car l))</code>cons到<code>(firsts (cdr l))</code>。为了找出<code>(firsts (cdr l))</code>，我们用新参数<code>(cdr l)</code>递归函数</p>
+</blockquote>
+<hr>
+<p><code>(null? l)</code></p>
+<p>其中 l 是<code>((c d) (e f))</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思</p>
+<p><code>(cons (car (car l)) (firsts (cdr l)))</code></p>
+<blockquote>
+<p>保存<code>(car (car l))</code>，递归<code>(firsts (cdr l))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? l)</code>为真吗<br>其中 l 是<code>((e f))</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思</p>
+<p><code>(cons (car (car l)) (firsts (cdr l)))</code></p>
+<blockquote>
+<p>把<code>(car (car l))</code>cons到<code>(firsts (cdr l))</code>。为了找出<code>(firsts (cdr ))</code>，我们用新参数&#96;(cdr l)递归函数</p>
+</blockquote>
+<hr>
+<p><code>(null? l)</code>为真吗</p>
+<blockquote>
+<p>是。</p>
+</blockquote>
+<hr>
+<p>现在<code>((null? l) ...)</code>的值是什么</p>
+<blockquote>
+<p>没有值，缺了点的东西。</p>
+</blockquote>
+<hr>
+<p>我们应该把原子cons到什么上？</p>
+<blockquote>
+<p>一个list。还记得cons的规则。</p>
+</blockquote>
+<hr>
+<p>为了达到cons，当<code>(null? l)</code>为真时，应该是什么值。</p>
+<blockquote>
+<p>既然最后的值必须是一个list，#t或#f都不对。让我们试试<code>(quote ())</code></p>
+</blockquote>
+<hr>
+<p>我们需要依次cons三次到一个()中。我们可以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">I.这样：</span><br><span class="line">1. 把e cons 到()</span><br><span class="line">2. 把c cons 到1的输出</span><br><span class="line">3. 把a cosn 到2的输出</span><br><span class="line"></span><br><span class="line">II.或者这样：</span><br><span class="line">1. 把a cons 到2的输出</span><br><span class="line">2. 把c cons 到3的输出</span><br><span class="line">3. 把e cons 到()</span><br><span class="line"></span><br><span class="line">III.或者这样：</span><br><span class="line">把 a cons 到</span><br><span class="line">  把 c cons 到</span><br><span class="line"> 把e cons 到</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不论如何<code>(firsts l)</code>结果都是 <code>(a c e)</code></p>
+</blockquote>
+<hr>
+<p>以上三种哪种是最舒服的呢</p>
+<blockquote>
+<p>对啊，就选那个</p>
+</blockquote>
+<hr>
+<p><code>(insertR new old lat)</code></p>
+<p>是什么，其中</p>
+<p>new是<code>topping</code></p>
+<p>old是<code>fudge</code></p>
+<p>lat 是<code>(ice cream with fudge for dessert)</code></p>
+<blockquote>
+<p><code>(ice ceame with fudge topping for dessert)</code></p>
+</blockquote>
+<hr>
+<p><code>(insertR new old lat)</code></p>
+<p>是什么，其中</p>
+<p>new是<code>jalapeno</code> </p>
+<p>old是<code>and</code> </p>
+<p>lat 是<code>(tacos tamales and salsa)</code></p>
+<blockquote>
+<p><code>(tacos tamales and jalapeno salsa)</code></p>
+</blockquote>
+<hr>
+<p><code>(insertR new old lat)</code></p>
+<p>是什么，其中</p>
+<p>new是<code>e</code></p>
+<p>old是<code>d</code></p>
+<p>lat 是 <code>(a b c d f g d h)</code></p>
+<p><code>(a b c d e f g d h)</code></p>
+<hr>
+<p>用你的话描述一下<code>(insertR new old lat)</code>是做什么的</p>
+<blockquote>
+<p>这里是我们的叙述：</p>
+<p>“它有三个参数：atom原子new和old，还有一个列表lat。函数insertR把new插入到第一个old后边创建一个lat。”</p>
+</blockquote>
+<hr>
+<p>试试看你能不能写出insertR的开始三行</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> insertR</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span> ...)))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>当递归insertR时，哪个参数变化了</p>
+<blockquote>
+<p>lat，因为我们次只能查询一个atom原子。</p>
+</blockquote>
+<hr>
+<p>我们要查询多少次lat</p>
+<blockquote>
+<p>两次。lat要么是null空表，要么是非空表。</p>
+</blockquote>
+<hr>
+<p>我们首先要问什么？</p>
+<blockquote>
+<p>首先，我们问<code>(null? lat)</code>。第二else，因为else是做后一个查询。</p>
+</blockquote>
+<hr>
+<p>如果<code>(null? lat)</code>假呢</p>
+<blockquote>
+<p>那么至少lat有一个成员。</p>
+</blockquote>
+<hr>
+<p>我们对第一个成员第一个查询问什么</p>
+<blockquote>
+<p>首先，<code>(eq? (car lat) old)</code>。然后是else，没有其他情况了。</p>
+</blockquote>
+<hr>
+<p>现在试试看你能不能写出整个insertR函数</p>
+<blockquote>
+<p>这是我们的第一次尝试  </p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> insertR</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old) (<span class="name"><span class="built_in">cdr</span></span> lat))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line">      (<span class="name">insertR</span> new old </span><br><span class="line">     (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>当 new 是 <code>topping</code></p>
+<p>old 是 <code>fudge</code></p>
+<p>lat 是 <code>(ice cream with fudge for dessert)</code></p>
+<p><code>(insertR new old lat)</code>的值是什么</p>
+<blockquote>
+<p><code>(ice cream with for dessert)</code></p>
+</blockquote>
+<hr>
+<p>可以看到new的地方被删除了，仅此而已。这和rember一样了。当<code>(eq? (car lat) old)</code>是真时该做什么</p>
+<blockquote>
+<p>在old的右侧插入new</p>
+</blockquote>
+<hr>
+<p>怎么做</p>
+<blockquote>
+<p>把new cons到<code>(cdr lat)</code>上</p>
+</blockquote>
+<hr>
+<p>现在的insertR的函数定义为</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> insertR</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">eq?</span></span> old (<span class="name"><span class="built_in">car</span></span> lat)) </span><br><span class="line">(<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line"> (<span class="name">insertR</span> new old (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Yes</p>
+</blockquote>
+<hr>
+<p>现在,<code>(insertR new old lat)</code>的结果是什么？</p>
+<p>当 new 是 <code>topping</code></p>
+<p>old 是 <code>fudge</code></p>
+<p>lat 是 <code>(ice cream with fudge for dessert)</code></p>
+<blockquote>
+<p><code>(ice cream with topping for dessert)</code></p>
+</blockquote>
+<hr>
+<p>这是我们想要的吗</p>
+<blockquote>
+<p>不是，这是把new替换了old</p>
+</blockquote>
+<hr>
+<p>还要做什么</p>
+<blockquote>
+<p>需要把old cons到刚刚cons到new前边。</p>
+</blockquote>
+<hr>
+<p>怎么把old加到new前边</p>
+<blockquote>
+<p>把new cons到<code>(cdr lat)</code>上，再把old cons上即</p>
+<p><code>(cons old (cons new (cdr lat)</code></p>
+</blockquote>
+<hr>
+<p>现在写出insertR函数</p>
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> insertR</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">eq?</span></span> old (<span class="name"><span class="built_in">car</span></span> lat)) </span><br><span class="line">     (<span class="name"><span class="built_in">cons</span></span> old (<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat))))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line">     (<span class="name">insertR</span> new old (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;(insertR &#x27;topping &#x27;fudge &#x27;(ice cream with fudge for dessert))</span><br><span class="line">&gt;=&gt;(ice cream with fudge topping for dessert)</span><br></pre></td></tr></table></figure>
+
+<p>OK了，这次</p>
+</blockquote>
+<hr>
+<p>现在试一试insertL函数</p>
+<p>提示：insertL把new原子插入到lat中的第一个old的左边。</p>
+<blockquote>
+<p>这个容易多了，对吗</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> insertL</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old)</span><br><span class="line">      (<span class="name"><span class="built_in">cons</span></span> new</span><br><span class="line">      (<span class="name"><span class="built_in">cons</span></span> old (<span class="name"><span class="built_in">cdr</span></span> lat))))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">     (<span class="name">insertL</span> new old</span><br><span class="line">     (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>你还能想到别的方法吗？</p>
+<blockquote>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;((eq? (car lat) old)</span><br><span class="line">(cons new (cons old (cdr lat))))</span><br></pre></td></tr></table></figure>
+
+<p>可以改成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;((eq? (car lat) old)</span><br><span class="line">(cons new lat))</span><br></pre></td></tr></table></figure>
+
+<p>当 old 等于 (car lat) 的时候， (cons old (cdr lat)) 等同于 lat.</p>
+</blockquote>
+<hr>
+<p>现在试试看你能不能写出subst函数(把old替换成new)<br>提示：(subst new old lat)用new替换lat中的第一个old</p>
+<blockquote>
+<p>当然就是</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> subst</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">eq?</span></span> old (<span class="name"><span class="built_in">car</span></span> lat)) </span><br><span class="line">     (<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line">    (<span class="name">subst</span> new old (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<p>这明明就是刚刚我们没写对的insertR嘛。</p>
+</blockquote>
+<hr>
+<center>**来，cons一块蛋糕到嘴里吧。**</center>
+
+<hr>
+<p>现在试试看你能不能写出subst2函数</p>
+<p>提示：(subst2 new o1 o2 lat)</p>
+<p>把lat中第一个出现的o1或者第一个出现的o2替换为new</p>
+<p>例如，<br>new是<code>vanilla</code></p>
+<p>o1是<code>chocolate</code></p>
+<p>o2是<code>banana</code> </p>
+<p>lat 是<code>(banana ice cream with chocolate topping)</code></p>
+<p>值是<code>(vanilla ice cream with chocolate topping)</code></p>
+<blockquote>
+<p>可以这样</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> subst2</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new o1 o2 lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) o1)</span><br><span class="line">      (<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">     ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) o2)</span><br><span class="line">      (<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">cdr</span></span> lat)</span><br><span class="line">     (<span class="name">subst2</span> new o1 o2</span><br><span class="line">    (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>也可以这样，把o1和o2直接用or表示</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> subst2</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new o1 o2 lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span>()))</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> o1 (<span class="name"><span class="built_in">car</span></span> lat)) </span><br><span class="line"> (<span class="name"><span class="built_in">eq?</span></span> o2 (<span class="name"><span class="built_in">car</span></span> lat))) </span><br><span class="line">(<span class="name"><span class="built_in">cons</span></span> new (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat) </span><br><span class="line">  (<span class="name">subst</span> new old (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<center>如果你直接写出最后一种，再cons一块蛋糕到嘴里吧。</center>
+
+<hr>
+<p>还记得rember是做什么的吗</p>
+<blockquote>
+<p>rember查找lat中的每一个atom看是否与a相同。如果不相同，rember留下这个atom。当第一次遇到a时，它停止并给出(cdr lat),即lat的剩余部分。所以最终仅仅删除了lat中的a。</p>
+</blockquote>
+<hr>
+<p>写出函数 multirember ，它把lat中所有的a都删除</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> multirember</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">(<span class="name">_____</span> _____)</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span></span><br><span class="line">  (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line"> (<span class="name">_____</span> _____)</span><br><span class="line"> (<span class="name">_____</span> _____))))))</span><br></pre></td></tr></table></figure>
+
+<p>提示：当(eq? (car lat) a)是真时该做什么<br>考虑一下例子， a 是cup， lat 是(cup tea cup and hick cup)</p>
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> multirember</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span></span><br><span class="line">     (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line">    (<span class="name">multirember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">      (<span class="name">multirember</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br><span class="line"></span><br><span class="line">&gt;(<span class="name">multirember</span> <span class="symbol">&#x27;cup</span> &#x27;(coffee cup tea cup and hick cup))</span><br><span class="line"></span><br><span class="line">&gt;=&gt; (<span class="name">coffee</span> tea and hick)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>你知道multirember如何工作的吗</p>
+<blockquote>
+<p>不知道没关系，下边一步步的看。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>Yes</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思</p>
+<p><code>(cons (car lat) (multirember a (cdr lat)))</code></p>
+<blockquote>
+<p>保存(<code>car lat)</code>即<code>coffee</code>，cons到一会计算的<code>(multirember a (cdr lat)))</code>上。现在看<code>(multirember a (cdr lat)))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>当然</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>是，所以忘记<code>(car lat)</code>，直接看<code>(multirember a (cdr lat))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>Yes!</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思</p>
+<p><code>(cons (car lat) (multirember a (cdr lat)))</code></p>
+<blockquote>
+<p>保存<code>(car lat)</code>即 <code>tea</code>，cons到一会计算的<code>(multirember a (cdr lat)))</code>上。现在看<code>(multirember a (cdr lat)))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>OK，下一个问题</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>是，所以忘记<code>(car lat)</code>，直接看<code>(multirember a (cdr lat))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，移动到下一行</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思<br><code>(cons (car lat) (multirember a (cdr lat)))</code></p>
+<blockquote>
+<p>保存<code>(car lat)</code>即 <code>and</code>，cons到一会计算的<code>(multirember a (cdr lat)))</code>上。现在看<code>(multirember a (cdr lat)))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p>下面的代码是什么意思<br><code>(cons (car lat) (multirember a (cdr lat)))</code></p>
+<hr>
+<blockquote>
+<p>保存<code>(car lat)</code>即 <code>hick</code>，cons到一会计算的<code>(multirember a (cdr lat)))</code>上。现在看<code>(multirember a (cdr lat)))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>是，所以忘记<code>(car lat)</code>，直接看<code>(multirember a (cdr lat))</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>是，所以值是<code>()</code></p>
+</blockquote>
+<hr>
+<p>结束了吗</p>
+<blockquote>
+<p>没有，还有几个cons没执行，需要回溯递归。</p>
+</blockquote>
+<hr>
+<p>下面呢</p>
+<blockquote>
+<p>把最近一次的<code>(car lat)</code>即<code>hick</code> cons 到<code>()</code>上。</p>
+</blockquote>
+<hr>
+<p>下面呢</p>
+<blockquote>
+<p>把<code>and</code> cons到<code>(hick)</code></p>
+</blockquote>
+<hr>
+<p>下面呢</p>
+<blockquote>
+<p>把<code>tea</code> cons 到 <code>(and hick)</code></p>
+</blockquote>
+<hr>
+<p>下面呢</p>
+<blockquote>
+<p>把<code>coffee</code> cons到<code>(tea and hick)</code></p>
+</blockquote>
+<hr>
+<p>结束了吗</p>
+<blockquote>
+<p>yes</p>
+</blockquote>
+<hr>
+<p>现在写一下函数 multiinsertR</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> multiinsertR</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">(<span class="name">_____</span> _____)</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span></span><br><span class="line">  (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line"> (<span class="name">_____</span> _____)</span><br><span class="line"> (<span class="name">_____</span> _____))))))</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> multiinsertR</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span></span><br><span class="line">     (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old)</span><br><span class="line">    (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">    (<span class="name"><span class="built_in">cons</span></span> new</span><br><span class="line">    (<span class="name">multiinsertR</span> new old</span><br><span class="line">      (<span class="name"><span class="built_in">cdr</span></span> lat)))))</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">      (<span class="name">multiinsertR</span> new old</span><br><span class="line">     (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<p>下面这个函数正确吗</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> multiinsertL</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">  ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">  (<span class="name"><span class="built_in">else</span></span></span><br><span class="line">(<span class="name"><span class="built_in">cond</span></span></span><br><span class="line"> ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old)</span><br><span class="line">  (<span class="name"><span class="built_in">cons</span></span> new</span><br><span class="line">  (<span class="name"><span class="built_in">cons</span></span> old</span><br><span class="line">  (<span class="name">multiinsertL</span> new old lat))))</span><br><span class="line"> (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line"> (<span class="name">multiinsertL</span> new old (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+
+<p>这个程序能结束吗</p>
+<blockquote>
+<p>No，因为遇到第一个old后一直不停的往它左边 <code>(cons new (cons old ...</code> 直到内存耗尽。</p>
+</blockquote>
+<hr>
+<p>现在试试更改的 multiinsertL 函数</p>
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> multiinsertL</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span></span><br><span class="line">     (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old)</span><br><span class="line">    (<span class="name"><span class="built_in">cons</span></span> new</span><br><span class="line">    (<span class="name"><span class="built_in">cons</span></span> old</span><br><span class="line">    (<span class="name">multiinsertL</span> new old</span><br><span class="line">      (<span class="name"><span class="built_in">cdr</span></span> lat)))))</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">      (<span class="name">multiinsertL</span> new old </span><br><span class="line">     (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<div class="textbox">
+<h1>第四戒 (初版)</h1>
+<p>递归时至少要有一个参数变化，并且向终止条件方向变化。变化的参数必须有终止测试条件：当时用cdr时，用null?测试终止。</p>
+</div>
+
+
+
+
+<p>现在我们写个 multisubst 函数</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> multisubst</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line"> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">(<span class="name">_____</span> ______)</span><br><span class="line">(<span class="name"><span class="built_in">else</span></span></span><br><span class="line">  (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line"> (<span class="name">_____</span> _____)</span><br><span class="line"> (<span class="name">_____</span> _____))))))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;(<span class="name"><span class="built_in">define</span></span> multisubst</span><br><span class="line"> (<span class="name"><span class="built_in">lambda</span></span> (new old lat)</span><br><span class="line">   (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">    ((<span class="name"><span class="built_in">null?</span></span> lat) (<span class="name"><span class="built_in">quote</span></span> ()))</span><br><span class="line">    (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) old)</span><br><span class="line">      (<span class="name"><span class="built_in">cons</span></span> new</span><br><span class="line">      (<span class="name">multisubst</span> new old</span><br><span class="line">      (<span class="name"><span class="built_in">cdr</span></span> lat))))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">cons</span></span> (<span class="name"><span class="built_in">car</span></span> lat)</span><br><span class="line">     (<span class="name">multisubst</span> new old</span><br><span class="line">     (<span class="name"><span class="built_in">cdr</span></span> lat)))))))))</span><br></pre></td></tr></table></figure></blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/19/TLS-03-md/" data-id="clbusk7om00009shi2z8h3smn" data-title="「The Little Schemer」03 cons 满塞" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/19/TLS-02-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">「The Little Schemer」02 这样做，再来一次，再来一次</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/19/TLS-03-md/">「The Little Schemer」03 cons 满塞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/19/TLS-02-md/">「The Little Schemer」02 这样做，再来一次，再来一次</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/19/TLS-01-md/">「The Little Schemer」01 玩具</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/15/TLS-00-md/">「The Little Schemer」前言</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/15/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
