@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>TLS-01.md | GitHub3C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="这是原子（atom）吗？atom  是的，因为atom是一个字母a开头的字符串。   这是原子吗？turkey  是的，因为atom是字母开头的字符串。   这是原子吗？1492  是的，因为1492是数字的字符串。   这是原子吗？u  是的，因为u是字母开头的字符串，仅仅一个字符。   这是原子吗？*abc$  是的，因为atom是字母或者除了括号”(“和“)”外的特殊字符开头的字符串。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TLS-01.md">
+<meta property="og:url" content="http://example.com/2022/12/19/TLS-01-md/index.html">
+<meta property="og:site_name" content="GitHub3C">
+<meta property="og:description" content="这是原子（atom）吗？atom  是的，因为atom是一个字母a开头的字符串。   这是原子吗？turkey  是的，因为atom是字母开头的字符串。   这是原子吗？1492  是的，因为1492是数字的字符串。   这是原子吗？u  是的，因为u是字母开头的字符串，仅仅一个字符。   这是原子吗？*abc$  是的，因为atom是字母或者除了括号”(“和“)”外的特殊字符开头的字符串。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-19T02:07:35.000Z">
+<meta property="article:modified_time" content="2022-12-19T02:15:46.361Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="GitHub3C" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GitHub3C</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-TLS-01-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/19/TLS-01-md/" class="article-date">
+  <time class="dt-published" datetime="2022-12-19T02:07:35.000Z" itemprop="datePublished">2022-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      TLS-01.md
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>这是原子（atom）吗？<br><code>atom</code></p>
+<blockquote>
+<p>是的，因为atom是一个字母a开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>turkey</code></p>
+<blockquote>
+<p>是的，因为atom是字母开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>1492</code></p>
+<blockquote>
+<p>是的，因为1492是数字的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>u</code></p>
+<blockquote>
+<p>是的，因为u是字母开头的字符串，仅仅一个字符。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>*abc$</code></p>
+<blockquote>
+<p>是的，因为atom是字母或者除了括号”(“和“)”外的特殊字符开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是列表（list）吗？<br><code>(atom)</code></p>
+<blockquote>
+<p>是的，因为(atom)是一个atom原子外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>(atom turkey or)</code></p>
+<blockquote>
+<p>是的，因为它是由一组原子外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>(atom turkey) or</code></p>
+<blockquote>
+<p>不是，这是两个没有括起来的两个S-表达式表达式，第一个是含有两个原子的列表，第二个是一个原子。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>((atom turkey) or)</code></p>
+<blockquote>
+<p>是的，因为这是两个S-表达式表达式外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>xyz</code></p>
+<blockquote>
+<p>是的，因为所有的atom原子都是S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>(x y z)</code></p>
+<blockquote>
+<p>是的，因为它是一个列表。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>((x y) z)</code></p>
+<blockquote>
+<p>是的，因为所有的列表都是S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(how are you doing so far)</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>列表中有多少个 S-表达式?<br><code>(how are you doing so far)</code></p>
+<blockquote>
+<p>六个，how, are, you, doing, so, 和far。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(((how) are) ((you) (doing so)) far)</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>列表中有多少个 S-表达式?<br><code>(((how) are) ((you) (doing so)) far)</code></p>
+<blockquote>
+<p>三个，((how) are), ((you) (doing so)), 和 far</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>()</code></p>
+<blockquote>
+<p>是的，因为它是0个S-表达式表达式外加括号组成的。这个特殊的S-表达式称为null(或者empty)列表</p>
+</blockquote>
+<hr>
+<p>这是atom原子吗？<br><code>()</code></p>
+<blockquote>
+<p>不是，因为()仅仅是一个列表。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(() () () ())</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br><code>(a b c)</code></p>
+<blockquote>
+<p>是a，因为a是列表的第一个atom原子</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是<code>((a b c) x y z)</code></p>
+<blockquote>
+<p><code>(a b c)</code>, 因为(a b c)是这个非空列表的第一个 S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是 <code>hotdog</code></p>
+<blockquote>
+<p>没有答案，atom原子没有car</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是 <code>()</code></p>
+<blockquote>
+<p>没有答案，空表没有car。<br>注脚：L：nil</p>
+</blockquote>
+<hr>
+<h1 id="Car的规则"><a href="#Car的规则" class="headerlink" title="Car的规则"></a>Car的规则</h1><p>基本操作符car仅为非空列表定义。</p>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是<code>(((hotdogs)) (and) (picle) relish)</code></p>
+<blockquote>
+<p><code>((hotdogs))</code>,叫做“hotdogs的列表的列表。”((hotdog))是l的第一个 S-表达式.</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(car l)</code>是什么<br>l 是<code>(((hotdogs)) (and) (picle) relish)</code></p>
+<blockquote>
+<p><code>((hotdogs))</code>, (car l)是另一种“l的car”的写法。 </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的<code>(car (car l))</code>是什么<br>l 是<code>(((hotdogs)) (and))</code></p>
+<blockquote>
+<p>(hotdogs)</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>(a b c)</code></p>
+<blockquote>
+<p><code>(b c)</code>， 因为(b c)是 l 中除了(car l)的部分。<br>注意：“cdr”发音为“could-er”。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>((a b c) x y z)</code></p>
+<blockquote>
+<p><code>(x y z)</code>.</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>(hamburger)</code></p>
+<blockquote>
+<p><code>()</code></p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取 (cdr l) 是什么<br>l 是<code>((x) t r)</code></p>
+<blockquote>
+<p><code>(t r)</code>，因为(cdr l) 仅仅“列表 l 的cdr“的另一种表示方法。</p>
+</blockquote>
+<hr>
+<p>下面的声明中a的cdr是什么<br><code>(cdr a)</code><br>假设 a 是 <code>hotdogs</code></p>
+<blockquote>
+<p>没有答案，atom原子没有cdr。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br><code>(cdr l)</code><br>假设 l 是()</p>
+<blockquote>
+<p>没有答案，空表null没有cdr。</p>
+</blockquote>
+<hr>
+<h1 id="cdr的规则"><a href="#cdr的规则" class="headerlink" title="cdr的规则"></a>cdr的规则</h1><p>基本操作符cdr仅为非空列表定义。<br>任何非空list的cdr都是另一个list。</p>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(car (cdr l))</code>是什么<br>假设 l 是<code>((b) (x y) ((x)))</code></p>
+<blockquote>
+<p><code>(x y)</code>， 因为((x y) ((c)))是(cdr l), (x y) 是(cdr l)的car。  </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(cdr (cdr l))</code> 是什么<br>假设 l 是<code>((b) (x y) ((c)))</code></p>
+<blockquote>
+<p><code>(((c)))</code>, 因为((x y) ((c)))是(cdr l)，而(x y)是(cdr l)的car。 </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(cdr (car l))</code><br>l 是<code>(a (b (c)) d)</code></p>
+<blockquote>
+<p>没有答案，因为(cdr l)是一个atom原子，它不能取cdr了。</p>
+</blockquote>
+<hr>
+<p>car 的参数可以是什么</p>
+<blockquote>
+<p>任何非空列表。</p>
+</blockquote>
+<hr>
+<p>cdr 的参数可以是什么    </p>
+<blockquote>
+<p>任何非空列表。</p>
+</blockquote>
+<hr>
+<p>假设 a 是 <code>peanut</code>，l 是<code>(butter and jelly)</code><br>那么a和l的cons(这通常写作”(cons a l)”<br>读作把原子a cons到列表 l 上)是什么</p>
+<blockquote>
+<p><code>(peanut butter and jelly)</code><br>因为cons把一个atom原子追加到列表最前头。    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>(banana and)</code>，l 是<code>(peanut butter and jelly)</code><br>那么把s cons到l上是什么</p>
+<blockquote>
+<p><code>((banana and) peanut butter and jelly)</code><br>因为cons任意 S-表达式追加到列表最前头。    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>((help) this)</code>，l 是<code>(is very ((hard) to learn))</code><br>那么<code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>(((help) this) is very ((hard) to learn))</code>。    </p>
+</blockquote>
+<hr>
+<p>cons 的参数可以是什么</p>
+<blockquote>
+<p>cons带两个参数，第一个可以是任何 S-表达式，第二个是任意列表。</p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>(a b (c)</code>， l 是<code>()</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>((a b (c)))</code></p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>a</code>， l 是<code>()</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>(a)</code></p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>((a b c))</code>， l 是<code>b</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p>没有答案，因为 l 不是list不能cons。</p>
+</blockquote>
+<hr>
+<h1 id="cons的规则"><a href="#cons的规则" class="headerlink" title="cons的规则"></a>cons的规则</h1><p>基本操作符cons有两个参数。<br>cons的第二个参数必须是列表，<br>结果返回一个列表。</p>
+<hr>
+<p>假设 s 是<code>a</code>，l 是<code>((b) c d)</code><br>那么<code>(cons s (car l))</code>是什么</p>
+<blockquote>
+<p><code>(a b)</code>    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>a</code>，l 是<code>((b) c d)</code><br>那么<code>(cons s (cdr l))</code>是什么</p>
+<blockquote>
+<p><code>(a c d)</code>。</p>
+</blockquote>
+<hr>
+<p>假设 l 是<code>()</code>，那么l 是null 列表，对么</p>
+<blockquote>
+<p>是的，因为它是一个含有0个 S-表达式表达式的列表。</p>
+</blockquote>
+<hr>
+<p><code>(null? (quote ())</code> 是什么</p>
+<blockquote>
+<p><code>true</code>真。因为<code>(quote())</code>是空表null的写法。    </p>
+</blockquote>
+<hr>
+<p>假设 l 是<code>(a b c)</code>，那么<code>(null? l)</code>是真还是假</p>
+<blockquote>
+<p>假。l 是非空集。</p>
+</blockquote>
+<hr>
+<p>假设 a 是<code>spaghetti</code>，那么<code>(null? a)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，atom原子没有真假。</p>
+</blockquote>
+<hr>
+<div class="textbox">
+<h1>Null的规则</h1>
+
+<p>基本操作符null?仅仅为列表定义</p>
+</div>
+
+<hr>
+<p>假如 s 是<code>harry</code>，那么 s 是否是atom原子</p>
+<blockquote>
+<p>真。因为harry是字母开始的字符串。</p>
+</blockquote>
+<hr>
+<p>如果 s 是 <code>harrry</code> 那么<code>(atom? s)</code>是什么</p>
+<blockquote>
+<p>真。因为 <code>(atom? s)</code> 是另外一种表达”s是否是一个atom原子“的方式。<br>注:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L:(defun atom? (x)</span><br><span class="line">    (not (listp x)))</span><br><span class="line">S:(define atom?</span><br><span class="line">    (lambda (x)</span><br><span class="line">        (and (not (pair? x)) (not （null? x))))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code>，那么 <code>(atom? s)</code> 是真是假</p>
+<blockquote>
+<p>假。因为s是一个列表。</p>
+</blockquote>
+<hr>
+<p>atom？有几个参数</p>
+<blockquote>
+<p>一个。这个参数可以是任意 S-表达式。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code><br>那么 <code>(atom? (car l))</code> 是真是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code><br>那么 <code>(atom? (cdr l))</code> 是真是假</p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p>假如l 是<code>(Harry)</code><br>那么<code>(atom? (cdr l))</code> 是真还是假</p>
+<blockquote>
+<p>假，因为空列表不是一个原子</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(swing low sweet cherry oat)</code><br>那么 <code>(atom? (car (cdr l)))</code> 是真是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(swing (low sweet) cherry oat)</code><br>那么 <code>(atom? (car (cdr l)))</code> 是真是假</p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>Harry</code>，a2是 <code>Harry</code><br>那么 a1 和 a2 是否相等</p>
+<blockquote>
+<p>真。因为a1和a2完全相同。</p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>Harry</code>，a2是 <code>Harry</code><br>那么 <code>(eq? a1 a2)</code> 是真还是假</p>
+<blockquote>
+<p>真。因为 <code>(eq? a1 a2)</code> 是另外一种表达”a1和a2是否是同一个非数值atom原子“的方式。<br>注：Lisp：<code>eq</code></p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>margarine</code>，a2是 <code>butter</code><br>那么 <code>(eq? a1 a2)</code> 是真还是假</p>
+<blockquote>
+<p>假。a1和a2不同。</p>
+</blockquote>
+<hr>
+<p><code>eq?</code>需要多少参数？各是什么？</p>
+<blockquote>
+<p>两个参数，都是非数值atom原子。</p>
+</blockquote>
+<hr>
+<p>假设 l1 是<code>()</code>，l2是 <code>(strawberry)</code><br>那么 <code>(eq? l1 l2)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，<code>()</code>和<code>(strawberry)</code>是列表。<br>注：实际当中是可以作为eq？的参数的。</p>
+</blockquote>
+<hr>
+<p>假设 n1 是<code>6</code>，n2是<code>7</code>，那么 <code>(eq? n1 n2)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，因为两个参数是数字。<br>注：实际当中是可以作为eq？的参数的。</p>
+</blockquote>
+<hr>
+<h1 id="eq？的规则"><a href="#eq？的规则" class="headerlink" title="eq？的规则"></a>eq？的规则</h1><p>基本操作符eq？带有两个参数,<br>两个都是非空数值的atom原子</p>
+<hr>
+<p>假设 l 是 <code>(Mary had a little lamb chop)</code><br>a 是 <code>Mary</code><br>那么<code>(eq? (car l) a)</code> 是真还是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>(soured milk)</code>，<br>a 是 <code>Mary</code>，<br>那么<code>(eq? (cdr l) a)</code> 是真还是假</p>
+<blockquote>
+<p>没有答案。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>(beans beans we need jelly beans)</code>，<br><code>(eq? (car l) (car (cdr l)))</code><br>是真还是假</p>
+<blockquote>
+<p>真。因为这是在比较列表中的第一个和第二个atom原子。</p>
+</blockquote>
+<center>**==>现在去，做出自己的花生酱果冻三明治<==**</center>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/19/TLS-01-md/" data-id="clbu7bhsz00006shi4c3a9htc" data-title="TLS-01.md" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/19/TLS-02-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          这样做，再来一次，再来一次
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/15/TLS-00-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TLS_00.md</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/19/TLS-02-md/">这样做，再来一次，再来一次</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/19/TLS-01-md/">TLS-01.md</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/15/TLS-00-md/">TLS_00.md</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/15/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

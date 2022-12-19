@@ -71,6 +71,1020 @@
       <div class="outer">
         <section id="main">
   
+    <article id="default-TLS-02-md" class="h-entry article article-type-default" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/19/TLS-02-md/" class="article-date">
+  <time class="dt-published" datetime="2022-12-19T02:18:07.000Z" itemprop="datePublished">2022-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/19/TLS-02-md/">这样做，再来一次，再来一次</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>假设 l 是 <code>(Jack Sprat could eat no chicken fat)</code><br>那么 <code>(lat? l)</code>是真还是假</p>
+<blockquote>
+<p>真。因为每个list表l中的 S-expression 都是atom原子。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>((Jack) Sprat could eat no chicken fat)</code><br>那么 <code>(lat? l)</code>是真还是假</p>
+<blockquote>
+<p>假。因为(car l)是一个list。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>(Jack (Sprat could) eat no chicken fat)</code><br>那么 <code>(lat? l)</code>是真还是假</p>
+<blockquote>
+<p>假。因为list表l的其中一个 S-expression 不是list。</p>
+</blockquote>
+<hr>
+<p>假设 l 是<code>()</code>，(lat? l)是真还是假</p>
+<blockquote>
+<p>真。因为list表l中没有list表。</p>
+</blockquote>
+<hr>
+<p>请问：lat是一个单纯由atom原子构成的列表,对吗?</p>
+<blockquote>
+<p>对。每个lat都是一个list的atom原子。</p>
+</blockquote>
+<hr>
+<p>用以下函数写一个lat?函数<br>car cdr cons null? atom? 和eq?</p>
+<blockquote>
+<p>你现在还不能完成这个问题，因为你还有些东西没有学到。看下面一个问题。</p>
+</blockquote>
+<hr>
+<center>**休息好了吗?**</center>
+
+<hr>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">     ((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">     ((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">     (<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
+
+<p>假设 l 是 <code>(bacon and eggs)</code>，那么<code>(lat? l)</code>是什么</p>
+<blockquote>
+<p>#t——真——因为l是一个lat<br>注：Lisp中：</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">defun</span> lat? (<span class="name">l</span>)</span><br><span class="line">  (<span class="name">cond</span></span><br><span class="line">    ((<span class="name">null</span> l) <span class="literal">t</span>)</span><br><span class="line">    ((<span class="name">atom</span>? (<span class="name">car</span> l)) (<span class="name">lat</span>? (<span class="name">cdr</span> l)))</span><br><span class="line">    (<span class="name">t</span> <span class="literal">nil</span>)))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>我们怎么推知<code>(lat? l)</code>的答案是 <code>#t</code></p>
+<blockquote>
+<p>现在这个问题你也回答不了。这个问题由lat?的查询决定。<br>提示：写下lat?的定义然后看下面的系列问答。</p>
+</blockquote>
+<hr>
+<p><code>(lat? l)</code> 的第一个查询是什么</p>
+<blockquote>
+<p>(null? l)<br>注意：<br>(cond …) 提问<br>(lambda …) 产生函数<br>(define …) 给出函数名</p>
+</blockquote>
+<hr>
+<p>cond 行<br><code>((null?l) #t)</code><br>是什么意思<br>其中 l 是 <code>(bacon and eggs)</code></p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是真；否则为假，cond执行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(atom? (car l))</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思<br>其中 l 是<code>(bacon and eggs)</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<blockquote>
+<p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)是一个atom原子，所以值由函数(lat? (cdr l))决定。</p>
+</blockquote>
+<hr>
+<p><code>(lat? (cdr l))</code>是什么意思</p>
+<blockquote>
+<p>(lat? (cdr l))通过lat?查询新的参数发现是否list表l的剩余组成部分都是是atom原子。</p>
+</blockquote>
+<hr>
+<p>现在lat?的参数l是什么</p>
+<blockquote>
+<p>现在的 l 是(cdr l)，也就是 (and eggs)</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p>(null? l)</p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中l现在是 <code>(and eggs)</code><br><code>((null? l) #t)</code></p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是#t真；否则cond执行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(atom? (car l))</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中 l 是<code>(and eggs)</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<blockquote>
+<p><code>(atom? (car l))</code>询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)是一个atom原子。</p>
+</blockquote>
+<hr>
+<p><code>(lat? (cdr l))</code>是什么意思</p>
+<blockquote>
+<p>(lat? (cdr l))通过lat?查询新的参数发现是否list表l的剩余组成部分都是是atom原子，这一次(cdr l)是(eggs)。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(null? l)</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中l现在是 (eggs)<br>((null? l) #t)</p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是#t真；否则cond执行下一个查询。此情况下，l不是null，所以查询下一个问题。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(atom? (car l))</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中 l 是<code>(and eggs)</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<blockquote>
+<p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。r如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)是一个atom原子，所以再一次我们查询(lat? (cdr l))。</p>
+</blockquote>
+<hr>
+<p><code>(lat? (cdr l))</code>是什么意思</p>
+<blockquote>
+<p>(lat? (cdr l))通过lat?查询新的参数发现是否list表l的剩余组成部分都是是atom原子，其中新查询的参数l变为(cdr l)。</p>
+</blockquote>
+<hr>
+<p>现在lat?的参数是什么</p>
+<blockquote>
+<p>()</p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中l现在是 <code>()</code><br><code>((null? l) #t)</code></p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是#t真；否则cond执行下一个查询。此情况下，l是空表()，所以(lat? l)是#t真，其中 l 是(bacon and eggs)。</p>
+</blockquote>
+<hr>
+<p>还记得 (lat? l) 的查询吗</p>
+<blockquote>
+<p>记不得了吧?<br>当l为(bacon and eggs)时，操作(lat? l)的值为#t</p>
+</blockquote>
+<hr>
+<p>你可以用自己的语言描述一下函数lat?做了什么吗</p>
+<blockquote>
+<p>这是我们的描述<br>“lat? 查找列表中的每一个 S-expression表达式，看每一个 S-expression表达式是否是atom原子，直到没有 S-expression了。如果从头至尾没有遇到一个list表，那么返回#t，否则返回#f——false”</p>
+</blockquote>
+<hr>
+<p>下面再写一次lat?的定义</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> lat?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (l)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">null?</span></span> l) <span class="literal">#t</span>)</span><br><span class="line">      ((<span class="name">atom?</span> (<span class="name"><span class="built_in">car</span></span> l)) (<span class="name">lat?</span> (<span class="name"><span class="built_in">cdr</span></span> l)))</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> <span class="literal">#f</span>))))</span><br></pre></td></tr></table></figure>
+
+<p><code>(lat? l)</code>的值是多少，其中l现在是<code>(bacom (and eggs))</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>第一个查询是什么</p>
+<blockquote>
+<p><code>(null? l)</code></p>
+</blockquote>
+<hr>
+<p><code>((null? l) #t)</code>是什么意思<br>其中 l 是 <code>(bacon (and eggs))</code></p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是真；否则为假，cond执行下一个查询。此情况下，l非空，进行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(atom? (car l))</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中 l 是<code>(bacon (and eggs))</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<blockquote>
+<p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)是一个atom原子，所以我们查询list表l的剩余部分看是否都是原子。</p>
+</blockquote>
+<hr>
+<p><code>(lat? (cdr l))</code><br>是什么意思</p>
+<blockquote>
+<p>(lat? (cdr l))通过lat?查询新的参数发现是否list表l的剩余组成部分都是是atom原子，其中把l替换为(cdr l)。</p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中l现在是 <code>((and eggs))</code><br><code>((null? l) #t)</code></p>
+<blockquote>
+<p>(null? l) 查询参数l是否是null。如果是，则是#t真；否则cond执行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(atom? (car l))</code></p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思，其中 l 是<code>((and eggs))</code><br><code>((atom? (car l)) (lat? (cdr l)))</code></p>
+<blockquote>
+<p>(atom? (car l))询问list表l的第一个 S-expression 是否是atom。如果(car l)是一个atom原子，那么我们要知道l的其余组成部分是否是atom原子。如果(car l)不是atom原子，我们询问下一个查询。在当前情况下(car l)不是一个atom原子，进行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>else</code></p>
+</blockquote>
+<hr>
+<p>else查询是什么意思</p>
+<blockquote>
+<p>else查询是否为真</p>
+</blockquote>
+<hr>
+<p>else是真吗</p>
+<blockquote>
+<p>是的，else总是真。</p>
+</blockquote>
+<hr>
+<p>else</p>
+<blockquote>
+<p>当然of course</p>
+</blockquote>
+<hr>
+<p>为什么else是最后一个查询</p>
+<blockquote>
+<p>因为我们不需要其它查询</p>
+</blockquote>
+<hr>
+<p>为什么我们不需要其它查询</p>
+<blockquote>
+<p>因为list可以是空表，也可以在第一个位置是atom原子，也可以在第一个位置是list表</p>
+</blockquote>
+<hr>
+<p><code>(else #f)</code> 是什么意思</p>
+<blockquote>
+<p>else查询else是否是真。else本身是真查询#f，得到#f假。</p>
+</blockquote>
+<hr>
+<p>解释下<br>))) </p>
+<blockquote>
+<p>匹配前边的(cond ..,(lambda…和(define…括号</p>
+</blockquote>
+<hr>
+<p>你能描述一下我们如何得出<code>(lat? l)</code> 是 #f的，其中 l 是<code>(baco (and eggs))</code></p>
+<blockquote>
+<p>一种解释是<br>“(lat? l)查询参数中的每一项是否是原子。如果在发现一个list之前就结束，那么值是#t。如果如这个例子(bacon (and eggs))中它找到一个list，那么(lat? l)的值就是#f”</p>
+</blockquote>
+<hr>
+<p>问<code>(or (null? l1) (atom? l2))</code>是真还是假， 其中 l1 是<code>()</code>， l2 是<code>(d e f g)</code></p>
+<blockquote>
+<p>真，因为(null? l1)是真。</p>
+</blockquote>
+<hr>
+<p>问<code>(or (null? l1) (null? l2))</code>是真还是假， 其中 l1 是<code>(a b c)</code>， l2 是<code>()</code></p>
+<blockquote>
+<p>真，因为(null? l2)是真。</p>
+</blockquote>
+<hr>
+<p>问(or (null? l1) (null? l2))是真还是假， 其中 l1 是(a b c)， l2 是(atom)</p>
+<blockquote>
+<p>假，因为无论(null? l1)还是(null? l2))是都是假。</p>
+</blockquote>
+<hr>
+<p><code>or ...)</code>是做什么的</p>
+<blockquote>
+<p>(or …)查询两个问题，每次一个。如果第一个是真那么停止并回答真。否则查询第二个问题并以第二个问题的回答作为答案。</p>
+</blockquote>
+<hr>
+<p>问 a 是否是lat的一个成员，其中 a 是<code>tea</code>，lat是<code>(coffee tea or milk)</code></p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>问<code>(member? a lat)</code> 是真还是假，其中 a 是<code>poached</code>，lat是<code>(fried eggs and scrambled eggs)</code></p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p>下面是函数member?的定义</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">define</span></span> member?</span><br><span class="line">  (<span class="name"><span class="built_in">lambda</span></span> (a lat)</span><br><span class="line">    (<span class="name"><span class="built_in">cond</span></span></span><br><span class="line">      ((<span class="name"><span class="built_in">null?</span></span> lat) <span class="literal">#f</span>)</span><br><span class="line">      (<span class="name"><span class="built_in">else</span></span> (<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line">                (<span class="name">member?</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))))))</span><br></pre></td></tr></table></figure>
+
+<p>问<code>(member? a lat)</code>是什么 其中 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code></p>
+<blockquote>
+<p>真 #t,因为atom原子meat是lat中的一个原子。</p>
+</blockquote>
+<hr>
+<p>我们怎么推知是#t</p>
+<blockquote>
+<p>值由查询(member? a lat)得到。提示：写出member?函数然后对照下面的问题。</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的第一个查询是什么</p>
+<blockquote>
+<p><code>(null? lat)</code>。这也是lat?的第一个查询。</p>
+</blockquote>
+<hr>
+<h1 id="第一戒"><a href="#第一戒" class="headerlink" title="第一戒"></a>第一戒</h1><p>(开端)<br>任何函数的第一个查询表达式重视null?</p>
+<hr>
+<p><code>((null? lat) #f)</code><br>其中lat是<code>(mashed potatoes and meat gravy)</code></p>
+<blockquote>
+<p>(null? lat) 查询参数l是否是null。如果是，则值是#f，<br>否则为假，cond执行下一个查询。</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>else</code>。</p>
+</blockquote>
+<hr>
+<p>为什么else是下一个查询</p>
+<blockquote>
+<p>因为我们不需要其它查询。</p>
+</blockquote>
+<hr>
+<p>else真的是一个查询吗</p>
+<blockquote>
+<p>是的，else总是真。</p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(else (or (eq? (car lat) a)  </span><br><span class="line">                (member? a (cdr lat))))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现在我们知道lat不是null，我们必须找出lat的car是不是a，或者lat的其他地方是不是a。</p>
+</blockquote>
+<hr>
+<p>问 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code>时  </p>
+<pre><code>(or (eq? (car lat) a)
+    (member? a (cdr lat))))
+</code></pre>
+<p>是真还是假</p>
+<blockquote>
+<p>下面一点点分析</p>
+</blockquote>
+<hr>
+<p>问 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code>时<br><code>(eq? (car lat) a)</code>是真还是假</p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p><code>(or ...)</code>的第二个查询是什么</p>
+<blockquote>
+<p><code>(member? a (cdr lat))</code>。递归查询函数<code>menber?</code>，参数lat变为<code>(cdr lat)</code></p>
+</blockquote>
+<hr>
+<p>现在member?的参数是什么</p>
+<blockquote>
+<p>lat现在是<code>(cdr lat)</code>,即<code>(potatoes and meat gravy)</code></p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>(null? lat)</code>。记得第一戒。</p>
+</blockquote>
+<hr>
+<p>当lat是(potatoes and meat gravy)时，(null? lat) 真还是假</p>
+<blockquote>
+<p>假#f。</p>
+</blockquote>
+<hr>
+<p>下面做什么</p>
+<blockquote>
+<p>下一个查询。</p>
+</blockquote>
+<hr>
+<p>下面这行是什么意思</p>
+<pre><code>(or (eq? (car lat) a)
+    (member? a (cdr lat))))
+</code></pre>
+<blockquote>
+<p>找出 a 是否与lat的car是eq?相同或者递归查找 a 是否是lat的cdr中的成员。</p>
+</blockquote>
+<hr>
+<p><code>(eq? a (car lat))</code></p>
+<blockquote>
+<p>No,因为 a 是 <code>meat</code>, 而(car lat)等于<code>potatoes</code></p>
+</blockquote>
+<hr>
+<p>下面做什么</p>
+<blockquote>
+<p>查询&#96;(member? a (cdr lat)</p>
+</blockquote>
+<hr>
+<p>现在member的参数是什么</p>
+<blockquote>
+<p>a 是<code>meat</code>，lat是<code>(and meat gravy)</code></p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p>(null? lat)&#96;</p>
+</blockquote>
+<hr>
+<p>下面做什么</p>
+<blockquote>
+<p>因为<code>(null？lat)</code>是假，下一个查询</p>
+</blockquote>
+<hr>
+<p>下一个查询是什么</p>
+<blockquote>
+<p><code>else</code></p>
+</blockquote>
+<hr>
+<p>下面的代码是什么值</p>
+<pre><code>(or (eq？ (car lat) a)
+    (member? a (cdr lat)))
+</code></pre>
+<blockquote>
+<p>#t。因为(car lat)即meat与a相同都是原子meat，所以(or …)是真。</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>meat</code>，lat是<code>(meat gravy)</code></p>
+<blockquote>
+<p>#t</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>meat</code>，lat是<code>(and meat gravy)</code></p>
+<blockquote>
+<p>#t</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>meat</code>，lat是<code>(potatoes and meat gravy)</code></p>
+<blockquote>
+<p>#t</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>meat</code>，lat是<code>(mashed potatoes and meat gravy)</code></p>
+<blockquote>
+<p>#t</p>
+</blockquote>
+<hr>
+<p>为了确保你的确会了，让我们快速的再来一次<br><code>(member? a lat)</code>的值是什么，</p>
+<p>其中 a 是<code>meat</code>，<br>lat是<code>(mashed potatoes and meat gravy)</code></p>
+<blockquote>
+<p>#t<br>提示：写下member?函数的定义然后参考下面的问题。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否,移动到下一行。</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是</p>
+</blockquote>
+<hr>
+<pre><code>(or (eq? (car lat) a)
+    (member? a (cdr lat))))
+</code></pre>
+<blockquote>
+<p>或许</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p>下个查询是什么</p>
+<blockquote>
+<p>函数递归参数 a 和(cdr lat)， a 是<code>meat</code>，(cdr lat)是<code>(potatoes and meat gravy)</code>。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否。下一行。</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是，但是<code>(eq? (car lat) a)</code> 为否。函数递归参数 a 和(cdr lat)，a为<code>meat</code>，(cdr lat)为<code>(and meat gravy)</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否。下一行。</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是，但是<code>(eq? (car lat) a)</code>为否。函数递归参数 a 和(cdr lat)，<br>a 是<code>meat</code>，lat是<code>(meat gravy)</code>。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询。</p>
+</blockquote>
+<hr>
+<p><code>(eq? (car lat) a)</code></p>
+<blockquote>
+<p>是，值为#t。</p>
+</blockquote>
+<hr>
+<pre><code>(or (eq? (car lat) a)
+    (member? a (cdr lat))))
+</code></pre>
+<blockquote>
+<p>#t<br>回溯上去知道a为<code>meat</code>，lat为<code>(mashed potatoes and meat gravy)</code>时为#t真。</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>liver</code>，lat是<code>(bagels and lox)</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>让我们看看为什么是#f。第一个查询是什么</p>
+<blockquote>
+<p><code>(null? lat)</code></p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否。下一行。</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是，但是<code>(eq? (car lat) a)</code>是false。函数递归参数 a 和(cdr lat)，其中 a 是liver，(cdr lat)是(and lox)。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是，但是(eq? (car lat) a)是false。函数递归参数 a 和(cdr lat)，其中 a 是liver，(cdr lat)是(lox)。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>否，下个查询</p>
+</blockquote>
+<hr>
+<p><code>else</code></p>
+<blockquote>
+<p>是，但是(eq? (car lat) a)是false。函数递归参数 a 和(cdr lat)，其中 a 是liver，(cdr lat)是()。</p>
+</blockquote>
+<hr>
+<p><code>(null? lat)</code></p>
+<blockquote>
+<p>是。</p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>liver</code>，lat是<code>()</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>下面的代码是什么值，其中 a 是<code>liver</code>，lat是<code>(lox)</code></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line">  (<span class="name">member?</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>liver</code>，lat是<code>(lox)</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>下面的代码是什么值，其中 a 是<code>liver</code>，lat是<code>(and lox)</code></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="built_in">or</span></span> (<span class="name"><span class="built_in">eq?</span></span> (<span class="name"><span class="built_in">car</span></span> lat) a)</span><br><span class="line">  (<span class="name">member?</span> a (<span class="name"><span class="built_in">cdr</span></span> lat)))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>liver</code>，lat是<code>(and lox)</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>下面的代码是什么值，其中 a 是<code>liver</code>，lat是<code>(bagels and lox)</code></p>
+<pre><code>(or (eq? (car lat) a)
+  (member? a (cdr lat)))
+</code></pre>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p><code>(member? a lat)</code>的值是什么，其中 a 是<code>liver</code>，lat是<code>(bagels and lox)</code></p>
+<blockquote>
+<p><code>#f</code></p>
+</blockquote>
+<hr>
+<p>相信这些吗？你可以休息下了！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/19/TLS-02-md/" data-id="clbu7bht400016shi32fk01jg" data-title="这样做，再来一次，再来一次" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-TLS-01-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/19/TLS-01-md/" class="article-date">
+  <time class="dt-published" datetime="2022-12-19T02:07:35.000Z" itemprop="datePublished">2022-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/12/19/TLS-01-md/">TLS-01.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>这是原子（atom）吗？<br><code>atom</code></p>
+<blockquote>
+<p>是的，因为atom是一个字母a开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>turkey</code></p>
+<blockquote>
+<p>是的，因为atom是字母开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>1492</code></p>
+<blockquote>
+<p>是的，因为1492是数字的字符串。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>u</code></p>
+<blockquote>
+<p>是的，因为u是字母开头的字符串，仅仅一个字符。</p>
+</blockquote>
+<hr>
+<p>这是原子吗？<br><code>*abc$</code></p>
+<blockquote>
+<p>是的，因为atom是字母或者除了括号”(“和“)”外的特殊字符开头的字符串。</p>
+</blockquote>
+<hr>
+<p>这是列表（list）吗？<br><code>(atom)</code></p>
+<blockquote>
+<p>是的，因为(atom)是一个atom原子外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>(atom turkey or)</code></p>
+<blockquote>
+<p>是的，因为它是由一组原子外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>(atom turkey) or</code></p>
+<blockquote>
+<p>不是，这是两个没有括起来的两个S-表达式表达式，第一个是含有两个原子的列表，第二个是一个原子。</p>
+</blockquote>
+<hr>
+<p>这是列表吗？<br><code>((atom turkey) or)</code></p>
+<blockquote>
+<p>是的，因为这是两个S-表达式表达式外加括号构成。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>xyz</code></p>
+<blockquote>
+<p>是的，因为所有的atom原子都是S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>(x y z)</code></p>
+<blockquote>
+<p>是的，因为它是一个列表。</p>
+</blockquote>
+<hr>
+<p>这是S-表达式吗？<br><code>((x y) z)</code></p>
+<blockquote>
+<p>是的，因为所有的列表都是S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(how are you doing so far)</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>列表中有多少个 S-表达式?<br><code>(how are you doing so far)</code></p>
+<blockquote>
+<p>六个，how, are, you, doing, so, 和far。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(((how) are) ((you) (doing so)) far)</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>列表中有多少个 S-表达式?<br><code>(((how) are) ((you) (doing so)) far)</code></p>
+<blockquote>
+<p>三个，((how) are), ((you) (doing so)), 和 far</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>()</code></p>
+<blockquote>
+<p>是的，因为它是0个S-表达式表达式外加括号组成的。这个特殊的S-表达式称为null(或者empty)列表</p>
+</blockquote>
+<hr>
+<p>这是atom原子吗？<br><code>()</code></p>
+<blockquote>
+<p>不是，因为()仅仅是一个列表。</p>
+</blockquote>
+<hr>
+<p>这是list吗？<br><code>(() () () ())</code></p>
+<blockquote>
+<p>是的，因为它是S-表达式表达式外加括号组成的。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br><code>(a b c)</code></p>
+<blockquote>
+<p>是a，因为a是列表的第一个atom原子</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是<code>((a b c) x y z)</code></p>
+<blockquote>
+<p><code>(a b c)</code>, 因为(a b c)是这个非空列表的第一个 S-表达式表达式。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是 <code>hotdog</code></p>
+<blockquote>
+<p>没有答案，atom原子没有car</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是 <code>()</code></p>
+<blockquote>
+<p>没有答案，空表没有car。<br>注脚：L：nil</p>
+</blockquote>
+<hr>
+<h1 id="Car的规则"><a href="#Car的规则" class="headerlink" title="Car的规则"></a>Car的规则</h1><p>基本操作符car仅为非空列表定义。</p>
+<hr>
+<p>下面的声明中的列表 l 的car是什么<br>l 是<code>(((hotdogs)) (and) (picle) relish)</code></p>
+<blockquote>
+<p><code>((hotdogs))</code>,叫做“hotdogs的列表的列表。”((hotdog))是l的第一个 S-表达式.</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(car l)</code>是什么<br>l 是<code>(((hotdogs)) (and) (picle) relish)</code></p>
+<blockquote>
+<p><code>((hotdogs))</code>, (car l)是另一种“l的car”的写法。 </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的<code>(car (car l))</code>是什么<br>l 是<code>(((hotdogs)) (and))</code></p>
+<blockquote>
+<p>(hotdogs)</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>(a b c)</code></p>
+<blockquote>
+<p><code>(b c)</code>， 因为(b c)是 l 中除了(car l)的部分。<br>注意：“cdr”发音为“could-er”。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>((a b c) x y z)</code></p>
+<blockquote>
+<p><code>(x y z)</code>.</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br>l 是<code>(hamburger)</code></p>
+<blockquote>
+<p><code>()</code></p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取 (cdr l) 是什么<br>l 是<code>((x) t r)</code></p>
+<blockquote>
+<p><code>(t r)</code>，因为(cdr l) 仅仅“列表 l 的cdr“的另一种表示方法。</p>
+</blockquote>
+<hr>
+<p>下面的声明中a的cdr是什么<br><code>(cdr a)</code><br>假设 a 是 <code>hotdogs</code></p>
+<blockquote>
+<p>没有答案，atom原子没有cdr。</p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l 的cdr是什么<br><code>(cdr l)</code><br>假设 l 是()</p>
+<blockquote>
+<p>没有答案，空表null没有cdr。</p>
+</blockquote>
+<hr>
+<h1 id="cdr的规则"><a href="#cdr的规则" class="headerlink" title="cdr的规则"></a>cdr的规则</h1><p>基本操作符cdr仅为非空列表定义。<br>任何非空list的cdr都是另一个list。</p>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(car (cdr l))</code>是什么<br>假设 l 是<code>((b) (x y) ((x)))</code></p>
+<blockquote>
+<p><code>(x y)</code>， 因为((x y) ((c)))是(cdr l), (x y) 是(cdr l)的car。  </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(cdr (cdr l))</code> 是什么<br>假设 l 是<code>((b) (x y) ((c)))</code></p>
+<blockquote>
+<p><code>(((c)))</code>, 因为((x y) ((c)))是(cdr l)，而(x y)是(cdr l)的car。 </p>
+</blockquote>
+<hr>
+<p>下面的声明中的列表 l ，取<code>(cdr (car l))</code><br>l 是<code>(a (b (c)) d)</code></p>
+<blockquote>
+<p>没有答案，因为(cdr l)是一个atom原子，它不能取cdr了。</p>
+</blockquote>
+<hr>
+<p>car 的参数可以是什么</p>
+<blockquote>
+<p>任何非空列表。</p>
+</blockquote>
+<hr>
+<p>cdr 的参数可以是什么    </p>
+<blockquote>
+<p>任何非空列表。</p>
+</blockquote>
+<hr>
+<p>假设 a 是 <code>peanut</code>，l 是<code>(butter and jelly)</code><br>那么a和l的cons(这通常写作”(cons a l)”<br>读作把原子a cons到列表 l 上)是什么</p>
+<blockquote>
+<p><code>(peanut butter and jelly)</code><br>因为cons把一个atom原子追加到列表最前头。    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>(banana and)</code>，l 是<code>(peanut butter and jelly)</code><br>那么把s cons到l上是什么</p>
+<blockquote>
+<p><code>((banana and) peanut butter and jelly)</code><br>因为cons任意 S-表达式追加到列表最前头。    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>((help) this)</code>，l 是<code>(is very ((hard) to learn))</code><br>那么<code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>(((help) this) is very ((hard) to learn))</code>。    </p>
+</blockquote>
+<hr>
+<p>cons 的参数可以是什么</p>
+<blockquote>
+<p>cons带两个参数，第一个可以是任何 S-表达式，第二个是任意列表。</p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>(a b (c)</code>， l 是<code>()</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>((a b (c)))</code></p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>a</code>， l 是<code>()</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p><code>(a)</code></p>
+</blockquote>
+<hr>
+<p>假设 s 是 <code>((a b c))</code>， l 是<code>b</code>，那么 <code>(cons s l)</code> 是什么</p>
+<blockquote>
+<p>没有答案，因为 l 不是list不能cons。</p>
+</blockquote>
+<hr>
+<h1 id="cons的规则"><a href="#cons的规则" class="headerlink" title="cons的规则"></a>cons的规则</h1><p>基本操作符cons有两个参数。<br>cons的第二个参数必须是列表，<br>结果返回一个列表。</p>
+<hr>
+<p>假设 s 是<code>a</code>，l 是<code>((b) c d)</code><br>那么<code>(cons s (car l))</code>是什么</p>
+<blockquote>
+<p><code>(a b)</code>    </p>
+</blockquote>
+<hr>
+<p>假设 s 是<code>a</code>，l 是<code>((b) c d)</code><br>那么<code>(cons s (cdr l))</code>是什么</p>
+<blockquote>
+<p><code>(a c d)</code>。</p>
+</blockquote>
+<hr>
+<p>假设 l 是<code>()</code>，那么l 是null 列表，对么</p>
+<blockquote>
+<p>是的，因为它是一个含有0个 S-表达式表达式的列表。</p>
+</blockquote>
+<hr>
+<p><code>(null? (quote ())</code> 是什么</p>
+<blockquote>
+<p><code>true</code>真。因为<code>(quote())</code>是空表null的写法。    </p>
+</blockquote>
+<hr>
+<p>假设 l 是<code>(a b c)</code>，那么<code>(null? l)</code>是真还是假</p>
+<blockquote>
+<p>假。l 是非空集。</p>
+</blockquote>
+<hr>
+<p>假设 a 是<code>spaghetti</code>，那么<code>(null? a)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，atom原子没有真假。</p>
+</blockquote>
+<hr>
+<div class="textbox">
+<h1>Null的规则</h1>
+
+<p>基本操作符null?仅仅为列表定义</p>
+</div>
+
+<hr>
+<p>假如 s 是<code>harry</code>，那么 s 是否是atom原子</p>
+<blockquote>
+<p>真。因为harry是字母开始的字符串。</p>
+</blockquote>
+<hr>
+<p>如果 s 是 <code>harrry</code> 那么<code>(atom? s)</code>是什么</p>
+<blockquote>
+<p>真。因为 <code>(atom? s)</code> 是另外一种表达”s是否是一个atom原子“的方式。<br>注:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L:(defun atom? (x)</span><br><span class="line">    (not (listp x)))</span><br><span class="line">S:(define atom?</span><br><span class="line">    (lambda (x)</span><br><span class="line">        (and (not (pair? x)) (not （null? x))))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code>，那么 <code>(atom? s)</code> 是真是假</p>
+<blockquote>
+<p>假。因为s是一个列表。</p>
+</blockquote>
+<hr>
+<p>atom？有几个参数</p>
+<blockquote>
+<p>一个。这个参数可以是任意 S-表达式。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code><br>那么 <code>(atom? (car l))</code> 是真是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(Harry had a heap of apples)</code><br>那么 <code>(atom? (cdr l))</code> 是真是假</p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p>假如l 是<code>(Harry)</code><br>那么<code>(atom? (cdr l))</code> 是真还是假</p>
+<blockquote>
+<p>假，因为空列表不是一个原子</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(swing low sweet cherry oat)</code><br>那么 <code>(atom? (car (cdr l)))</code> 是真是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假如 s 是 <code>(swing (low sweet) cherry oat)</code><br>那么 <code>(atom? (car (cdr l)))</code> 是真是假</p>
+<blockquote>
+<p>假。</p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>Harry</code>，a2是 <code>Harry</code><br>那么 a1 和 a2 是否相等</p>
+<blockquote>
+<p>真。因为a1和a2完全相同。</p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>Harry</code>，a2是 <code>Harry</code><br>那么 <code>(eq? a1 a2)</code> 是真还是假</p>
+<blockquote>
+<p>真。因为 <code>(eq? a1 a2)</code> 是另外一种表达”a1和a2是否是同一个非数值atom原子“的方式。<br>注：Lisp：<code>eq</code></p>
+</blockquote>
+<hr>
+<p>假如 a1 是 <code>margarine</code>，a2是 <code>butter</code><br>那么 <code>(eq? a1 a2)</code> 是真还是假</p>
+<blockquote>
+<p>假。a1和a2不同。</p>
+</blockquote>
+<hr>
+<p><code>eq?</code>需要多少参数？各是什么？</p>
+<blockquote>
+<p>两个参数，都是非数值atom原子。</p>
+</blockquote>
+<hr>
+<p>假设 l1 是<code>()</code>，l2是 <code>(strawberry)</code><br>那么 <code>(eq? l1 l2)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，<code>()</code>和<code>(strawberry)</code>是列表。<br>注：实际当中是可以作为eq？的参数的。</p>
+</blockquote>
+<hr>
+<p>假设 n1 是<code>6</code>，n2是<code>7</code>，那么 <code>(eq? n1 n2)</code>是真还是假</p>
+<blockquote>
+<p>没有答案，因为两个参数是数字。<br>注：实际当中是可以作为eq？的参数的。</p>
+</blockquote>
+<hr>
+<h1 id="eq？的规则"><a href="#eq？的规则" class="headerlink" title="eq？的规则"></a>eq？的规则</h1><p>基本操作符eq？带有两个参数,<br>两个都是非空数值的atom原子</p>
+<hr>
+<p>假设 l 是 <code>(Mary had a little lamb chop)</code><br>a 是 <code>Mary</code><br>那么<code>(eq? (car l) a)</code> 是真还是假</p>
+<blockquote>
+<p>真。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>(soured milk)</code>，<br>a 是 <code>Mary</code>，<br>那么<code>(eq? (cdr l) a)</code> 是真还是假</p>
+<blockquote>
+<p>没有答案。</p>
+</blockquote>
+<hr>
+<p>假设 l 是 <code>(beans beans we need jelly beans)</code>，<br><code>(eq? (car l) (car (cdr l)))</code><br>是真还是假</p>
+<blockquote>
+<p>真。因为这是在比较列表中的第一个和第二个atom原子。</p>
+</blockquote>
+<center>**==>现在去，做出自己的花生酱果冻三明治<==**</center>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/19/TLS-01-md/" data-id="clbu7bhsz00006shi4c3a9htc" data-title="TLS-01.md" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-TLS-00-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/12/15/TLS-00-md/" class="article-date">
@@ -241,6 +1255,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/19/TLS-02-md/">这样做，再来一次，再来一次</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/19/TLS-01-md/">TLS-01.md</a>
+          </li>
         
           <li>
             <a href="/2022/12/15/TLS-00-md/">TLS_00.md</a>
